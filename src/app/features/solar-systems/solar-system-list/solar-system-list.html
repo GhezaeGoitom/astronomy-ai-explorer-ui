@@ -1,0 +1,196 @@
+<section class="solar-system-list">
+
+  <div class="page-header">
+
+    <div>
+      <span class="eyebrow">ASTRONOMY</span>
+
+      <h2>Solar Systems</h2>
+
+      <p>
+        Explore planetary systems and their place within galaxies.
+      </p>
+    </div>
+
+    @if (authService.canModify()) {
+      <a
+        routerLink="/solar-systems/create"
+        class="create-button"
+      >
+        <span>+</span>
+        Create Solar System
+      </a>
+    }
+
+  </div>
+
+
+  @if (solarSystems().length === 0) {
+
+    <div class="empty-state">
+
+      <div class="empty-icon">◎</div>
+
+      <h3>No solar systems found</h3>
+
+      <p>
+        There are currently no solar systems available in the database.
+      </p>
+
+    </div>
+
+  } @else {
+
+    <div class="solar-system-grid">
+
+      @for (
+        solarSystem of solarSystems();
+        track solarSystem.id
+      ) {
+
+        <article class="solar-system-card">
+
+          <div class="system-visual">
+
+            <div class="system-glow"></div>
+
+            <div class="sun"></div>
+
+            <div class="orbit orbit-one">
+              <span class="orbit-planet planet-one"></span>
+            </div>
+
+            <div class="orbit orbit-two">
+              <span class="orbit-planet planet-two"></span>
+            </div>
+
+            <div class="orbit orbit-three">
+              <span class="orbit-planet planet-three"></span>
+            </div>
+
+          </div>
+
+
+          <div class="system-content">
+
+            <div class="system-heading">
+
+              <div>
+
+                <span class="system-label">
+                  SOLAR SYSTEM
+                </span>
+
+                <h3>
+                  <a
+                    [routerLink]="[
+                      '/solar-systems',
+                      solarSystem.id
+                    ]"
+                  >
+                    {{ solarSystem.name }}
+                  </a>
+                </h3>
+
+              </div>
+
+              <span class="system-id">
+                #{{ solarSystem.id }}
+              </span>
+
+            </div>
+
+
+            <p class="description">
+              {{
+                solarSystem.description ||
+                'No description available.'
+              }}
+            </p>
+
+
+            <div class="properties">
+
+              <div class="property">
+
+                <span>Galaxy</span>
+
+                <strong>
+                  {{ solarSystem.galaxyId }}
+                </strong>
+
+              </div>
+
+
+              <div class="property">
+
+                <span>Discover</span>
+
+                <strong>
+                  {{ solarSystem.discoverId }}
+                </strong>
+
+              </div>
+
+            </div>
+
+
+            <div class="card-footer">
+
+              <a
+                [routerLink]="[
+                  '/solar-systems',
+                  solarSystem.id
+                ]"
+                class="view-link"
+              >
+                View details
+                <span>→</span>
+              </a>
+
+
+              <div class="actions">
+
+                @if (authService.canModify()) {
+
+                  <a
+                    [routerLink]="[
+                      '/solar-systems',
+                      solarSystem.id,
+                      'edit'
+                    ]"
+                    class="edit-button"
+                  >
+                    Edit
+                  </a>
+
+                }
+
+
+                @if (authService.isAdmin()) {
+
+                  <button
+                    type="button"
+                    class="delete-button"
+                    (click)="deleteSolarSystem(solarSystem.id)"
+                  >
+                    Delete
+                  </button>
+
+                }
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      }
+
+    </div>
+
+  }
+
+</section>

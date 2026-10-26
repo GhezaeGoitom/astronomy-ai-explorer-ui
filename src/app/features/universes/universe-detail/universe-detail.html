@@ -1,0 +1,133 @@
+<section class="universe-detail">
+
+  @if (universe(); as currentUniverse) {
+
+    <div class="page-header">
+
+      <div>
+        <a
+          class="back-link"
+          routerLink="/universes"
+        >
+          ← Back to Universes
+        </a>
+
+        <div class="title-row">
+
+          <div>
+            <span class="eyebrow">
+              COSMOLOGICAL STRUCTURE
+            </span>
+
+            <h1>
+              {{ currentUniverse.name }}
+            </h1>
+          </div>
+
+          @if (authService.canModify()) {
+            <a
+              class="edit-button"
+              [routerLink]="[
+                '/universes',
+                currentUniverse.id,
+                'edit'
+              ]"
+            >
+              Edit Universe
+            </a>
+          }
+
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="universe-content">
+
+      <!-- Hero -->
+
+      <div class="universe-hero">
+
+        <div class="universe-icon">
+          🌌
+        </div>
+
+        <div>
+
+          <span>Universe</span>
+
+          <h2>
+            {{ currentUniverse.name }}
+          </h2>
+
+          <p>
+            Explore the large-scale structure and
+            coordinate information associated with
+            this universe.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- Information -->
+
+      <div class="universe-info">
+
+        <div class="info-card">
+
+          <span>Coordinate</span>
+
+          <strong>
+            {{ currentUniverse.coordinate || 'N/A' }}
+          </strong>
+
+        </div>
+
+        <div class="info-card">
+
+          <span>Object ID</span>
+
+          <strong>
+            {{ currentUniverse.id }}
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <!-- Description -->
+
+      <div class="description-card">
+
+        <div class="section-heading">
+
+          <span>ABOUT</span>
+
+          <h2>Description</h2>
+
+        </div>
+
+        <p>
+          {{
+            currentUniverse.description ||
+            'No description available.'
+          }}
+        </p>
+
+      </div>
+
+    </div>
+
+  } @else {
+
+    <div class="loading">
+      <p>Loading universe...</p>
+    </div>
+
+  }
+
+</section>

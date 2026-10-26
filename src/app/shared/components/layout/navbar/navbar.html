@@ -1,0 +1,24 @@
+<header class="navbar">
+
+  <div class="brand">
+    <div class="brand-icon">✦</div>
+
+    <div>
+      <h1>Astronomy AI Explorer</h1>
+      <span>Explore the universe</span>
+    </div>
+  </div>
+
+  <div class="user-section">
+
+    @if (authService.isAdmin()) {
+      <span class="role-badge">ADMIN</span>
+    }
+
+    <button type="button" (click)="logout()">
+      Logout
+    </button>
+
+  </div>
+
+</header>

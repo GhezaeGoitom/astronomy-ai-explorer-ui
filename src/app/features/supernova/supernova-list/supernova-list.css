@@ -1,0 +1,547 @@
+:host {
+display: block;
+}
+
+.supernova-list {
+max-width: 1400px;
+margin: 0 auto;
+}
+
+/* Header */
+
+.page-header {
+display: flex;
+align-items: flex-end;
+justify-content: space-between;
+
+gap: 24px;
+margin-bottom: 32px;
+}
+
+.eyebrow {
+display: block;
+margin-bottom: 7px;
+
+color: #fb923c;
+
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 0.12em;
+}
+
+.page-header h2 {
+margin: 0;
+
+color: #f8fafc;
+
+font-size: 32px;
+font-weight: 650;
+letter-spacing: -0.02em;
+}
+
+.page-header p {
+margin: 8px 0 0;
+
+color: #94a3b8;
+
+font-size: 14px;
+}
+
+/* Create button */
+
+.create-button {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+
+padding: 10px 16px;
+
+border-radius: 8px;
+
+background: #ea580c;
+color: white;
+
+text-decoration: none;
+
+font-size: 14px;
+font-weight: 600;
+
+box-shadow:
+0 0 20px rgba(234, 88, 12, 0.2);
+
+transition:
+background 0.2s ease,
+transform 0.2s ease,
+box-shadow 0.2s ease;
+}
+
+.create-button span {
+font-size: 18px;
+line-height: 1;
+}
+
+.create-button:hover {
+background: #f97316;
+
+transform: translateY(-1px);
+
+box-shadow:
+0 0 28px rgba(249, 115, 22, 0.35);
+}
+
+/* Grid */
+
+.supernova-grid {
+display: grid;
+
+grid-template-columns:
+repeat(auto-fill, minmax(310px, 1fr));
+
+gap: 20px;
+}
+
+/* Card */
+
+.supernova-card {
+overflow: hidden;
+
+border: 1px solid #202a42;
+border-radius: 14px;
+
+background: #11182b;
+
+transition:
+transform 0.2s ease,
+border-color 0.2s ease,
+box-shadow 0.2s ease;
+}
+
+.supernova-card:hover {
+transform: translateY(-3px);
+
+border-color: #a65332;
+
+box-shadow:
+0 12px 35px rgba(0, 0, 0, 0.28);
+}
+
+/* Explosion visual */
+
+.supernova-visual {
+position: relative;
+
+height: 150px;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+overflow: hidden;
+
+background:
+radial-gradient(
+circle at center,
+rgba(249, 115, 22, 0.18),
+transparent 55%
+),
+#0d1425;
+}
+
+/* Central glow */
+
+.explosion-glow {
+position: absolute;
+
+width: 72px;
+height: 72px;
+
+border-radius: 50%;
+
+background:
+radial-gradient(
+circle,
+rgba(255, 251, 235, 0.95),
+rgba(251, 191, 36, 0.75) 28%,
+rgba(249, 115, 22, 0.35) 52%,
+transparent 75%
+);
+
+filter: blur(6px);
+}
+
+/* Shockwaves */
+
+.shockwave {
+position: absolute;
+
+border-radius: 50%;
+
+border: 1px solid rgba(251, 146, 60, 0.25);
+}
+
+.shockwave-one {
+width: 65px;
+height: 65px;
+}
+
+.shockwave-two {
+width: 105px;
+height: 105px;
+
+border-color: rgba(251, 146, 60, 0.16);
+}
+
+.shockwave-three {
+width: 145px;
+height: 145px;
+
+border-color: rgba(251, 146, 60, 0.09);
+}
+
+/* Energy rays */
+
+.energy {
+position: absolute;
+
+width: 3px;
+height: 42px;
+
+border-radius: 50%;
+
+background:
+linear-gradient(
+to bottom,
+transparent,
+rgba(253, 186, 116, 0.8),
+transparent
+);
+
+filter: blur(1px);
+
+box-shadow:
+0 0 10px rgba(249, 115, 22, 0.6);
+}
+
+.energy-one {
+transform: rotate(25deg);
+top: 20px;
+left: 35%;
+}
+
+.energy-two {
+transform: rotate(-35deg);
+top: 18px;
+right: 34%;
+}
+
+.energy-three {
+transform: rotate(65deg);
+bottom: 20px;
+left: 39%;
+}
+
+.energy-four {
+transform: rotate(-65deg);
+bottom: 18px;
+right: 38%;
+}
+
+/* Core */
+
+.supernova-core {
+position: relative;
+
+z-index: 4;
+
+width: 45px;
+height: 45px;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+border-radius: 50%;
+
+background:
+radial-gradient(
+circle,
+#ffffff 0%,
+#fef3c7 28%,
+#fb923c 55%,
+#ea580c 100%
+);
+
+color: white;
+
+font-size: 21px;
+
+box-shadow:
+0 0 38px rgba(249, 115, 22, 0.75);
+}
+
+/* Content */
+
+.supernova-content {
+padding: 20px;
+}
+
+.supernova-heading {
+display: flex;
+align-items: flex-start;
+justify-content: space-between;
+
+gap: 12px;
+}
+
+.supernova-label {
+color: #64748b;
+
+font-size: 10px;
+font-weight: 700;
+
+letter-spacing: 0.1em;
+}
+
+.supernova-heading h3 {
+margin: 4px 0 0;
+
+color: #f8fafc;
+
+font-size: 20px;
+font-weight: 600;
+}
+
+.supernova-id {
+padding: 4px 7px;
+
+border: 1px solid #263451;
+border-radius: 5px;
+
+color: #64748b;
+
+font-size: 10px;
+}
+
+/* Description */
+
+.description {
+min-height: 42px;
+
+margin: 14px 0 18px;
+
+color: #94a3b8;
+
+font-size: 13px;
+line-height: 1.6;
+}
+
+/* Properties */
+
+.properties {
+display: grid;
+
+grid-template-columns: repeat(3, 1fr);
+
+border-top: 1px solid #202a42;
+border-bottom: 1px solid #202a42;
+}
+
+.property {
+min-width: 0;
+
+padding: 13px 9px;
+}
+
+.property + .property {
+border-left: 1px solid #202a42;
+}
+
+.property span {
+display: block;
+
+margin-bottom: 5px;
+
+color: #64748b;
+
+font-size: 10px;
+
+text-transform: uppercase;
+letter-spacing: 0.06em;
+}
+
+.property strong {
+display: block;
+
+color: #cbd5e1;
+
+font-size: 12px;
+font-weight: 600;
+
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+/* Footer */
+
+.card-footer {
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+gap: 12px;
+
+padding-top: 17px;
+}
+
+.view-link {
+display: inline-flex;
+align-items: center;
+gap: 6px;
+
+color: #fb923c;
+
+font-size: 13px;
+font-weight: 600;
+
+text-decoration: none;
+
+transition: gap 0.2s ease;
+}
+
+.view-link:hover {
+gap: 10px;
+}
+
+.actions {
+display: flex;
+align-items: center;
+gap: 7px;
+}
+
+/* Actions */
+
+.edit-button,
+.delete-button {
+padding: 6px 10px;
+
+border-radius: 6px;
+
+font-size: 11px;
+font-weight: 600;
+
+cursor: pointer;
+
+text-decoration: none;
+
+transition: 0.2s ease;
+}
+
+.edit-button {
+border: 1px solid #334155;
+
+background: transparent;
+
+color: #cbd5e1;
+}
+
+.edit-button:hover {
+background: #1e293b;
+color: white;
+}
+
+.delete-button {
+border: 1px solid #4c2730;
+
+background: transparent;
+
+color: #f87171;
+}
+
+.delete-button:hover {
+background: #3a1820;
+}
+
+/* Empty state */
+
+.empty-state {
+padding: 70px 20px;
+
+text-align: center;
+
+border: 1px dashed #293754;
+border-radius: 14px;
+
+background: #11182b;
+}
+
+.empty-icon {
+margin-bottom: 15px;
+
+color: #fb923c;
+
+font-size: 42px;
+}
+
+.empty-state h3 {
+margin: 0 0 8px;
+
+color: #e2e8f0;
+
+font-size: 18px;
+}
+
+.empty-state p {
+margin: 0;
+
+color: #64748b;
+
+font-size: 13px;
+}
+
+/* Responsive */
+
+@media (max-width: 700px) {
+
+.page-header {
+align-items: flex-start;
+flex-direction: column;
+}
+
+.page-header h2 {
+font-size: 27px;
+}
+
+.create-button {
+width: 100%;
+justify-content: center;
+}
+
+.supernova-grid {
+grid-template-columns: 1fr;
+}
+}
+
+@media (max-width: 420px) {
+
+.supernova-content {
+padding: 16px;
+}
+
+.properties {
+grid-template-columns: 1fr;
+}
+
+.property + .property {
+border-left: 0;
+border-top: 1px solid #202a42;
+}
+
+.card-footer {
+align-items: flex-start;
+flex-direction: column;
+}
+
+.actions {
+width: 100%;
+}
+}

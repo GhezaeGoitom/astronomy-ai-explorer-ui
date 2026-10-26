@@ -1,0 +1,123 @@
+<section class="star-detail">
+
+@if (star(); as currentStar) {
+
+```
+<div class="page-header">
+
+  <div>
+    <a class="back-link" routerLink="/stars">
+      ← Back to Stars
+    </a>
+
+    <div class="title-row">
+
+      <div>
+        <span class="eyebrow">ASTRONOMICAL OBJECT</span>
+        <h1>{{ currentStar.name }}</h1>
+      </div>
+
+      @if (authService.canModify()) {
+        <a
+          class="edit-button"
+          [routerLink]="[
+            '/stars',
+            currentStar.id,
+            'edit'
+          ]"
+        >
+          Edit Star
+        </a>
+      }
+
+    </div>
+  </div>
+
+</div>
+
+
+<div class="star-content">
+
+  <div class="star-hero">
+
+    <div class="star-icon">
+      ⭐
+    </div>
+
+    <div>
+      <span>Star</span>
+
+      <h2>{{ currentStar.name }}</h2>
+
+      <p>
+        Explore the physical properties and astronomical
+        information associated with this star.
+      </p>
+    </div>
+
+  </div>
+
+
+  <div class="star-info">
+
+    <div class="info-card">
+      <span>Object Size</span>
+      <strong>
+        {{ currentStar.objectSize || 'N/A' }}
+      </strong>
+    </div>
+
+    <div class="info-card">
+      <span>Object Mass</span>
+      <strong>
+        {{ currentStar.objectMass || 'N/A' }}
+      </strong>
+    </div>
+
+    <div class="info-card">
+      <span>Solar System</span>
+      <strong>
+        {{ currentStar.solarSystemId ?? 'N/A' }}
+      </strong>
+    </div>
+
+    <div class="info-card">
+      <span>Discovery Record</span>
+      <strong>
+        {{ currentStar.discoverId ?? 'N/A' }}
+      </strong>
+    </div>
+
+  </div>
+
+
+  <div class="description-card">
+
+    <div class="section-heading">
+      <span>ABOUT</span>
+      <h2>Description</h2>
+    </div>
+
+    <p>
+      {{
+        currentStar.description ||
+        'No description available.'
+      }}
+    </p>
+
+  </div>
+
+</div>
+```
+
+} @else {
+
+```
+<div class="loading">
+  <p>Loading star...</p>
+</div>
+```
+
+}
+
+</section>

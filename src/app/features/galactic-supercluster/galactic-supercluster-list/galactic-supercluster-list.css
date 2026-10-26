@@ -1,0 +1,522 @@
+:host {
+display: block;
+}
+
+.supercluster-list {
+max-width: 1400px;
+margin: 0 auto;
+}
+
+/* Header */
+
+.page-header {
+display: flex;
+align-items: flex-end;
+justify-content: space-between;
+
+gap: 24px;
+margin-bottom: 32px;
+}
+
+.eyebrow {
+display: block;
+margin-bottom: 7px;
+
+color: #c084fc;
+
+font-size: 11px;
+font-weight: 700;
+
+letter-spacing: 0.12em;
+}
+
+.page-header h2 {
+margin: 0;
+
+color: #f8fafc;
+
+font-size: 32px;
+font-weight: 650;
+
+letter-spacing: -0.02em;
+}
+
+.page-header p {
+margin: 8px 0 0;
+
+color: #94a3b8;
+
+font-size: 14px;
+}
+
+/* Create */
+
+.create-button {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+
+padding: 10px 16px;
+
+border-radius: 8px;
+
+background: #9333ea;
+color: white;
+
+text-decoration: none;
+
+font-size: 14px;
+font-weight: 600;
+
+box-shadow:
+0 0 20px rgba(147, 51, 234, 0.2);
+
+transition:
+background 0.2s ease,
+transform 0.2s ease,
+box-shadow 0.2s ease;
+}
+
+.create-button span {
+font-size: 18px;
+line-height: 1;
+}
+
+.create-button:hover {
+background: #a855f7;
+
+transform: translateY(-1px);
+
+box-shadow:
+0 0 28px rgba(147, 51, 234, 0.35);
+}
+
+/* Grid */
+
+.supercluster-grid {
+display: grid;
+
+grid-template-columns:
+repeat(auto-fill, minmax(310px, 1fr));
+
+gap: 20px;
+}
+
+/* Card */
+
+.supercluster-card {
+overflow: hidden;
+
+border: 1px solid #202a42;
+border-radius: 14px;
+
+background: #11182b;
+
+transition:
+transform 0.2s ease,
+border-color 0.2s ease,
+box-shadow 0.2s ease;
+}
+
+.supercluster-card:hover {
+transform: translateY(-3px);
+
+border-color: #7e4ca8;
+
+box-shadow:
+0 12px 35px rgba(0, 0, 0, 0.28);
+}
+
+/* Cosmic structure */
+
+.supercluster-visual {
+position: relative;
+
+height: 150px;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+overflow: hidden;
+
+background:
+radial-gradient(
+circle at center,
+rgba(168, 85, 247, 0.18),
+transparent 52%
+),
+#0d1425;
+}
+
+/* Cosmic web */
+
+.cosmic-web {
+position: absolute;
+
+width: 180px;
+height: 110px;
+
+border: 1px solid rgba(192, 132, 252, 0.14);
+
+border-radius: 50%;
+
+transform: rotate(-18deg);
+
+box-shadow:
+0 0 35px rgba(168, 85, 247, 0.08);
+}
+
+.cosmic-web::before,
+.cosmic-web::after {
+content: '';
+
+position: absolute;
+
+inset: 15px 35px;
+
+border: 1px solid rgba(192, 132, 252, 0.13);
+
+border-radius: 50%;
+
+transform: rotate(55deg);
+}
+
+.cosmic-web::after {
+transform: rotate(-55deg);
+}
+
+/* Cluster nodes */
+
+.cluster-node {
+position: absolute;
+
+z-index: 2;
+
+width: 23px;
+height: 23px;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+border-radius: 50%;
+
+background:
+radial-gradient(
+circle,
+#f5f3ff,
+#c084fc 38%,
+#9333ea 68%,
+transparent 75%
+);
+
+color: #f5f3ff;
+
+font-size: 11px;
+
+box-shadow:
+0 0 16px rgba(192, 132, 252, 0.65);
+}
+
+.node-one {
+top: 22px;
+left: 27%;
+}
+
+.node-two {
+top: 45px;
+right: 22%;
+}
+
+.node-three {
+bottom: 23px;
+left: 25%;
+}
+
+.node-four {
+bottom: 28px;
+right: 30%;
+}
+
+.node-five {
+top: 67px;
+left: 18%;
+}
+
+/* Center */
+
+.supercluster-core {
+position: relative;
+
+z-index: 4;
+
+width: 47px;
+height: 47px;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+border-radius: 50%;
+
+background:
+radial-gradient(
+circle,
+#faf5ff,
+#c084fc 40%,
+#7e22ce 100%
+);
+
+color: white;
+
+font-size: 21px;
+
+box-shadow:
+0 0 38px rgba(192, 132, 252, 0.65);
+}
+
+/* Content */
+
+.supercluster-content {
+padding: 20px;
+}
+
+.supercluster-heading {
+display: flex;
+align-items: flex-start;
+justify-content: space-between;
+
+gap: 12px;
+}
+
+.supercluster-label {
+color: #64748b;
+
+font-size: 10px;
+font-weight: 700;
+
+letter-spacing: 0.1em;
+}
+
+.supercluster-heading h3 {
+margin: 4px 0 0;
+
+color: #f8fafc;
+
+font-size: 20px;
+font-weight: 600;
+}
+
+.supercluster-id {
+padding: 4px 7px;
+
+border: 1px solid #263451;
+border-radius: 5px;
+
+color: #64748b;
+
+font-size: 10px;
+}
+
+/* Description */
+
+.description {
+min-height: 42px;
+
+margin: 14px 0 18px;
+
+color: #94a3b8;
+
+font-size: 13px;
+line-height: 1.6;
+}
+
+/* Properties */
+
+.properties {
+border-top: 1px solid #202a42;
+border-bottom: 1px solid #202a42;
+}
+
+.property {
+padding: 13px 10px;
+}
+
+.property span {
+display: block;
+
+margin-bottom: 5px;
+
+color: #64748b;
+
+font-size: 10px;
+
+text-transform: uppercase;
+letter-spacing: 0.06em;
+}
+
+.property strong {
+color: #cbd5e1;
+
+font-size: 12px;
+font-weight: 600;
+
+word-break: break-word;
+}
+
+/* Footer */
+
+.card-footer {
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+gap: 12px;
+
+padding-top: 17px;
+}
+
+.view-link {
+display: inline-flex;
+align-items: center;
+gap: 6px;
+
+color: #c084fc;
+
+font-size: 13px;
+font-weight: 600;
+
+text-decoration: none;
+
+transition: gap 0.2s ease;
+}
+
+.view-link:hover {
+gap: 10px;
+}
+
+.actions {
+display: flex;
+align-items: center;
+gap: 7px;
+}
+
+/* Actions */
+
+.edit-button,
+.delete-button {
+padding: 6px 10px;
+
+border-radius: 6px;
+
+font-size: 11px;
+font-weight: 600;
+
+cursor: pointer;
+
+text-decoration: none;
+
+transition: 0.2s ease;
+}
+
+.edit-button {
+border: 1px solid #334155;
+
+background: transparent;
+
+color: #cbd5e1;
+}
+
+.edit-button:hover {
+background: #1e293b;
+color: white;
+}
+
+.delete-button {
+border: 1px solid #4c2730;
+
+background: transparent;
+
+color: #f87171;
+}
+
+.delete-button:hover {
+background: #3a1820;
+}
+
+/* Empty state */
+
+.empty-state {
+padding: 70px 20px;
+
+text-align: center;
+
+border: 1px dashed #293754;
+border-radius: 14px;
+
+background: #11182b;
+}
+
+.empty-icon {
+margin-bottom: 15px;
+
+color: #c084fc;
+
+font-size: 42px;
+}
+
+.empty-state h3 {
+margin: 0 0 8px;
+
+color: #e2e8f0;
+
+font-size: 18px;
+}
+
+.empty-state p {
+margin: 0;
+
+color: #64748b;
+
+font-size: 13px;
+}
+
+/* Responsive */
+
+@media (max-width: 700px) {
+
+.page-header {
+align-items: flex-start;
+flex-direction: column;
+}
+
+.page-header h2 {
+font-size: 27px;
+}
+
+.create-button {
+width: 100%;
+justify-content: center;
+}
+
+.supercluster-grid {
+grid-template-columns: 1fr;
+}
+}
+
+@media (max-width: 420px) {
+
+.supercluster-content {
+padding: 16px;
+}
+
+.card-footer {
+align-items: flex-start;
+flex-direction: column;
+}
+
+.actions {
+width: 100%;
+}
+}

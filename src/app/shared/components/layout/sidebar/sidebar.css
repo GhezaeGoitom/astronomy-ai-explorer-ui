@@ -1,0 +1,76 @@
+:host {
+  display: block;
+  width: 240px;
+  flex-shrink: 0;
+}
+
+.sidebar {
+  min-height: calc(100vh - 64px);
+  padding: 24px 14px;
+
+  background: #0f172a;
+  border-right: 1px solid #202a42;
+
+  box-sizing: border-box;
+}
+
+.nav-section {
+  margin-bottom: 28px;
+}
+
+.section-title {
+  display: block;
+  padding: 0 12px;
+  margin-bottom: 8px;
+
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+
+  color: #64748b;
+}
+
+.sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  padding: 10px 12px;
+  margin-bottom: 3px;
+
+  border-radius: 7px;
+
+  color: #94a3b8;
+  text-decoration: none;
+
+  font-size: 14px;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.sidebar a:hover {
+  background: #172036;
+  color: #f8fafc;
+}
+
+.sidebar a.active {
+  background: #1d4ed8;
+  color: white;
+}
+
+.icon {
+  width: 20px;
+
+  display: inline-flex;
+  justify-content: center;
+
+  font-size: 15px;
+}
+
+.admin-section {
+  padding-top: 4px;
+  border-top: 1px solid #202a42;
+}

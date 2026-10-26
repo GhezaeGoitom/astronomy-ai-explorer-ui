@@ -1,0 +1,202 @@
+<section class="galaxy-form-page">
+
+  <div class="page-header">
+
+    <a class="back-link" routerLink="/galaxies">
+      ← Back to Galaxies
+    </a>
+
+    <div class="title-row">
+
+      <div>
+        <span class="eyebrow">ASTRONOMICAL OBJECT</span>
+
+        <h1>
+          {{ isEditMode() ? 'Edit Galaxy' : 'Create Galaxy' }}
+        </h1>
+
+        <p class="page-description">
+          {{
+            isEditMode()
+              ? 'Update the astronomical information for this galaxy.'
+              : 'Add a new galaxy to the astronomy explorer.'
+          }}
+        </p>
+      </div>
+
+      <div class="galaxy-icon">
+        🌌
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <form
+    class="galaxy-form"
+    [formGroup]="galaxyForm"
+    (ngSubmit)="submit()"
+  >
+
+    <div class="form-section">
+
+      <div class="section-heading">
+        <span>BASIC INFORMATION</span>
+        <h2>Galaxy Details</h2>
+      </div>
+
+
+      <div class="form-grid">
+
+        <div class="form-field full-width">
+
+          <label for="name">
+            Galaxy Name
+          </label>
+
+          <input
+            id="name"
+            type="text"
+            formControlName="name"
+            placeholder="Enter galaxy name"
+          />
+
+          @if (
+            galaxyForm.controls.name.touched &&
+            galaxyForm.controls.name.hasError('required')
+          ) {
+            <small class="error">
+              Galaxy name is required.
+            </small>
+          }
+
+          @if (
+            galaxyForm.controls.name.touched &&
+            galaxyForm.controls.name.hasError('maxlength')
+          ) {
+            <small class="error">
+              Name cannot exceed 100 characters.
+            </small>
+          }
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label for="universeId">
+            Universe ID
+          </label>
+
+          <input
+            id="universeId"
+            type="number"
+            formControlName="universeId"
+            placeholder="Enter universe ID"
+          />
+
+          @if (
+            galaxyForm.controls.universeId.touched &&
+            galaxyForm.controls.universeId.hasError('required')
+          ) {
+            <small class="error">
+              Universe ID is required.
+            </small>
+          }
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label for="galacticClusterId">
+            Galactic Cluster ID
+          </label>
+
+          <input
+            id="galacticClusterId"
+            type="number"
+            formControlName="galacticClusterId"
+            placeholder="Optional"
+          />
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label for="discoverId">
+            Discover ID
+          </label>
+
+          <input
+            id="discoverId"
+            type="number"
+            formControlName="discoverId"
+            placeholder="Enter discover ID"
+          />
+
+          @if (
+            galaxyForm.controls.discoverId.touched &&
+            galaxyForm.controls.discoverId.hasError('required')
+          ) {
+            <small class="error">
+              Discover ID is required.
+            </small>
+          }
+
+        </div>
+
+
+        <div class="form-field full-width">
+
+          <label for="description">
+            Description
+          </label>
+
+          <textarea
+            id="description"
+            formControlName="description"
+            rows="6"
+            placeholder="Describe this galaxy..."
+          ></textarea>
+
+          @if (
+            galaxyForm.controls.description.touched &&
+            galaxyForm.controls.description.hasError('maxlength')
+          ) {
+            <small class="error">
+              Description cannot exceed 5000 characters.
+            </small>
+          }
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="form-actions">
+
+      <a
+        class="cancel-button"
+        routerLink="/galaxies"
+      >
+        Cancel
+      </a>
+
+      <button
+        type="submit"
+        class="submit-button"
+        [disabled]="galaxyForm.invalid"
+      >
+        {{ isEditMode() ? 'Update Galaxy' : 'Create Galaxy' }}
+      </button>
+
+    </div>
+
+  </form>
+
+</section>

@@ -1,0 +1,87 @@
+<nav class="sidebar">
+
+  <div class="nav-section">
+
+    <span class="section-title">Overview</span>
+
+    <a routerLink="/dashboard">
+      <span class="icon">⌂</span>
+      Dashboard
+    </a>
+
+    <a routerLink="/search">
+      <span class="icon">⌕</span>
+      Semantic Search
+    </a>
+
+  </div>
+
+
+  <div class="nav-section">
+
+    <span class="section-title">Explore</span>
+
+    <a routerLink="/planets">
+      <span class="icon">◉</span>
+      Planets
+    </a>
+
+    <a routerLink="/stars">
+      <span class="icon">✦</span>
+      Stars
+    </a>
+
+    <a routerLink="/galaxies">
+      <span class="icon">◌</span>
+      Galaxies
+    </a>
+
+    <a routerLink="/solar-systems">
+      <span class="icon">◎</span>
+      Solar Systems
+    </a>
+
+    <a routerLink="/universes">
+      <span class="icon">◈</span>
+      Universes
+    </a>
+
+    <a routerLink="/galactic-clusters">
+      <span class="icon">✧</span>
+      Galactic Clusters
+    </a>
+
+    <a routerLink="/galactic-superclusters">
+      <span class="icon">✧</span>
+      Galactic Superclusters
+    </a>
+
+    <a routerLink="/supernovae">
+      <span class="icon">☼</span>
+      Supernovae
+    </a>
+
+    <a routerLink="/black-holes">
+      <span class="icon">●</span>
+      Black Holes
+    </a>
+
+  </div>
+
+
+  @if (isAdmin()) {
+
+    <div class="nav-section admin-section">
+
+      <span class="section-title">Administration</span>
+
+      <a routerLink="/admin/users">
+        <span class="icon">♙</span>
+        Users
+      </a>
+
+    </div>
+
+  }
+
+</nav>

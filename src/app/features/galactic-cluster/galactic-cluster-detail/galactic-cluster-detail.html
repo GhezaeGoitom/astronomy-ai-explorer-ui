@@ -1,0 +1,132 @@
+<section class="galactic-cluster-detail">
+
+  @if (galacticCluster(); as cluster) {
+
+    <div class="page-header">
+
+      <div>
+        <a
+          class="back-link"
+          routerLink="/galactic-clusters"
+        >
+          ← Back to Galactic Clusters
+        </a>
+
+        <div class="title-row">
+
+          <div>
+            <span class="eyebrow">
+              ASTRONOMICAL STRUCTURE
+            </span>
+
+            <h1>
+              {{ cluster.name }}
+            </h1>
+          </div>
+
+          @if (authService.canModify()) {
+            <a
+              class="edit-button"
+              [routerLink]="[
+                '/galactic-clusters',
+                cluster.id,
+                'edit'
+              ]"
+            >
+              Edit Galactic Cluster
+            </a>
+          }
+
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="galactic-cluster-content">
+
+      <!-- Hero -->
+
+      <div class="galactic-cluster-hero">
+
+        <div class="galactic-cluster-icon">
+          ✦
+        </div>
+
+        <div>
+
+          <span>Galactic Cluster</span>
+
+          <h2>
+            {{ cluster.name }}
+          </h2>
+
+          <p>
+            Explore this collection of galaxies and its
+            position within the larger cosmic structure.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- Information -->
+
+      <div class="galactic-cluster-info">
+
+        <div class="info-card">
+
+          <span>Galactic Supercluster</span>
+
+          <strong>
+            {{ cluster.galacticSuperClusterId ?? 'N/A' }}
+          </strong>
+
+        </div>
+
+        <div class="info-card">
+
+          <span>Object ID</span>
+
+          <strong>
+            {{ cluster.id }}
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <!-- Description -->
+
+      <div class="description-card">
+
+        <div class="section-heading">
+
+          <span>ABOUT</span>
+
+          <h2>Description</h2>
+
+        </div>
+
+        <p>
+          {{
+            cluster.description ||
+            'No description available.'
+          }}
+        </p>
+
+      </div>
+
+    </div>
+
+  } @else {
+
+    <div class="loading">
+      <p>Loading galactic cluster...</p>
+    </div>
+
+  }
+
+</section>

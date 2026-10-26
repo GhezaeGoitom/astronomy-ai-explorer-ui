@@ -1,0 +1,190 @@
+<section class="supernova-list">
+
+  <div class="page-header">
+
+<div>
+  <span class="eyebrow">ASTRONOMY</span>
+
+  <h2>Supernovae</h2>
+
+  <p>
+    Explore powerful stellar explosions and the remnants they leave behind.
+  </p>
+</div>
+
+@if (authService.canModify()) {
+  <a
+    routerLink="/supernovae/create"
+    class="create-button"
+  >
+    <span>+</span>
+    Create Supernova
+  </a>
+}
+
+  </div>
+
+@if (supernovae().length === 0) {
+
+<div class="empty-state">
+
+  <div class="empty-icon">☼</div>
+
+  <h3>No supernovae found</h3>
+
+  <p>
+    There are currently no supernovae available in the database.
+  </p>
+
+</div>
+
+} @else {
+
+<div class="supernova-grid">
+
+  @for (supernova of supernovae(); track supernova.id) {
+
+    <article class="supernova-card">
+
+      <div class="supernova-visual">
+
+        <div class="explosion-glow"></div>
+
+        <div class="shockwave shockwave-one"></div>
+        <div class="shockwave shockwave-two"></div>
+        <div class="shockwave shockwave-three"></div>
+
+        <div class="energy energy-one"></div>
+        <div class="energy energy-two"></div>
+        <div class="energy energy-three"></div>
+        <div class="energy energy-four"></div>
+
+        <div class="supernova-core">
+          ☼
+        </div>
+
+      </div>
+
+
+      <div class="supernova-content">
+
+        <div class="supernova-heading">
+
+          <div>
+
+            <span class="supernova-label">
+              SUPERNOVA
+            </span>
+
+            <h3>
+              {{ supernova.name }}
+            </h3>
+
+          </div>
+
+          <span class="supernova-id">
+            #{{ supernova.id }}
+          </span>
+
+        </div>
+
+
+        <p class="description">
+          {{ supernova.description || 'No description available.' }}
+        </p>
+
+
+        <div class="properties">
+
+          <div class="property">
+
+            <span>Brightness</span>
+
+            <strong>
+              {{ supernova.brightness ?? 'N/A' }}
+            </strong>
+
+          </div>
+
+          <div class="property">
+
+            <span>Universe</span>
+
+            <strong>
+              #{{ supernova.universeId }}
+            </strong>
+
+          </div>
+
+          <div class="property">
+
+            <span>Discovery</span>
+
+            <strong>
+              #{{ supernova.discoverId }}
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <div class="card-footer">
+
+          <a
+            [routerLink]="[
+              '/supernovae',
+              supernova.id
+            ]"
+            class="view-link"
+          >
+            View details
+            <span>→</span>
+          </a>
+
+
+          <div class="actions">
+
+            @if (authService.canModify()) {
+
+              <a
+                [routerLink]="[
+                  '/supernovae',
+                  supernova.id,
+                  'edit'
+                ]"
+                class="edit-button"
+              >
+                Edit
+              </a>
+
+            }
+
+
+            @if (authService.isAdmin()) {
+
+              <button
+                type="button"
+                class="delete-button"
+                (click)="deleteSupernova(supernova.id)"
+              >
+                Delete
+              </button>
+
+            }
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </article>
+
+  }
+
+</div>
+
+}
+
+</section>

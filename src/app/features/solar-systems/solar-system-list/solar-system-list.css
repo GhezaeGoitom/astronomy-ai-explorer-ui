@@ -1,0 +1,569 @@
+:host {
+  display: block;
+}
+
+.solar-system-list {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+
+/* =========================
+   Page Header
+   ========================= */
+
+.page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.eyebrow {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #60a5fa;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.page-header h2 {
+  margin: 0;
+
+  color: #f8fafc;
+
+  font-size: 32px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.page-header p {
+  margin: 8px 0 0;
+
+  color: #94a3b8;
+
+  font-size: 14px;
+}
+
+
+/* =========================
+   Create Button
+   ========================= */
+
+.create-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 10px 16px;
+
+  border-radius: 8px;
+
+  background: #2563eb;
+  color: white;
+
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  box-shadow:
+    0 0 20px rgba(37, 99, 235, 0.2);
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.create-button span {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.create-button:hover {
+  background: #3b82f6;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 0 25px rgba(37, 99, 235, 0.3);
+}
+
+
+/* =========================
+   Grid
+   ========================= */
+
+.solar-system-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fill, minmax(310px, 1fr));
+
+  gap: 20px;
+}
+
+
+/* =========================
+   Card
+   ========================= */
+
+.solar-system-card {
+  overflow: hidden;
+
+  border: 1px solid #202a42;
+  border-radius: 14px;
+
+  background: #11182b;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.solar-system-card:hover {
+  transform: translateY(-3px);
+
+  border-color: #36557f;
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================
+   Solar System Visual
+   ========================= */
+
+.system-visual {
+  position: relative;
+
+  height: 150px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(59, 130, 246, 0.13),
+      transparent 60%
+    ),
+    #0d1425;
+}
+
+
+/* Sun glow */
+
+.system-glow {
+  position: absolute;
+
+  width: 75px;
+  height: 75px;
+
+  border-radius: 50%;
+
+  background: rgba(251, 191, 36, 0.22);
+
+  filter: blur(15px);
+}
+
+
+/* Sun */
+
+.sun {
+  position: absolute;
+  z-index: 3;
+
+  width: 34px;
+  height: 34px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      #fff7cc,
+      #fbbf24 50%,
+      #d97706
+    );
+
+  box-shadow:
+    0 0 25px rgba(251, 191, 36, 0.65);
+}
+
+
+/* Orbits */
+
+.orbit {
+  position: absolute;
+
+  border: 1px solid rgba(96, 165, 250, 0.25);
+
+  border-radius: 50%;
+}
+
+.orbit-one {
+  width: 65px;
+  height: 65px;
+}
+
+.orbit-two {
+  width: 105px;
+  height: 105px;
+}
+
+.orbit-three {
+  width: 145px;
+  height: 145px;
+}
+
+
+/* Orbiting planets */
+
+.orbit-planet {
+  position: absolute;
+
+  display: block;
+
+  border-radius: 50%;
+}
+
+
+/* Inner planet */
+
+.planet-one {
+  width: 7px;
+  height: 7px;
+
+  top: 3px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  background: #60a5fa;
+
+  box-shadow:
+    0 0 8px rgba(96, 165, 250, 0.8);
+}
+
+
+/* Middle planet */
+
+.planet-two {
+  width: 9px;
+  height: 9px;
+
+  right: 5px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  background: #a78bfa;
+
+  box-shadow:
+    0 0 8px rgba(167, 139, 250, 0.8);
+}
+
+
+/* Outer planet */
+
+.planet-three {
+  width: 11px;
+  height: 11px;
+
+  bottom: 8px;
+  left: 18px;
+
+  background: #38bdf8;
+
+  box-shadow:
+    0 0 9px rgba(56, 189, 248, 0.8);
+}
+
+
+/* =========================
+   Content
+   ========================= */
+
+.system-content {
+  padding: 20px;
+}
+
+.system-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 12px;
+}
+
+.system-label {
+  color: #64748b;
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.system-heading h3 {
+  margin: 4px 0 0;
+
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.system-heading h3 a {
+  color: #f8fafc;
+
+  text-decoration: none;
+
+  transition: color 0.2s ease;
+}
+
+.system-heading h3 a:hover {
+  color: #60a5fa;
+}
+
+.system-id {
+  padding: 4px 7px;
+
+  border: 1px solid #263451;
+  border-radius: 5px;
+
+  color: #64748b;
+
+  font-size: 10px;
+}
+
+
+/* =========================
+   Description
+   ========================= */
+
+.description {
+  min-height: 42px;
+
+  margin: 14px 0 18px;
+
+  color: #94a3b8;
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+
+/* =========================
+   Properties
+   ========================= */
+
+.properties {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  border-top: 1px solid #202a42;
+  border-bottom: 1px solid #202a42;
+}
+
+.property {
+  padding: 13px 10px;
+}
+
+.property + .property {
+  border-left: 1px solid #202a42;
+}
+
+.property span {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #64748b;
+
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.property strong {
+  color: #cbd5e1;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  word-break: break-word;
+}
+
+
+/* =========================
+   Footer
+   ========================= */
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  padding-top: 17px;
+}
+
+.view-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  color: #60a5fa;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition: gap 0.2s ease;
+}
+
+.view-link:hover {
+  gap: 10px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.edit-button,
+.delete-button {
+  padding: 6px 10px;
+
+  border-radius: 6px;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  cursor: pointer;
+  text-decoration: none;
+
+  transition: 0.2s ease;
+}
+
+.edit-button {
+  border: 1px solid #334155;
+
+  background: transparent;
+  color: #cbd5e1;
+}
+
+.edit-button:hover {
+  background: #1e293b;
+  color: white;
+}
+
+.delete-button {
+  border: 1px solid #4c2730;
+
+  background: transparent;
+  color: #f87171;
+}
+
+.delete-button:hover {
+  background: #3a1820;
+}
+
+
+/* =========================
+   Empty State
+   ========================= */
+
+.empty-state {
+  padding: 70px 20px;
+
+  text-align: center;
+
+  border: 1px dashed #293754;
+  border-radius: 14px;
+
+  background: #11182b;
+}
+
+.empty-icon {
+  margin-bottom: 15px;
+
+  color: #60a5fa;
+
+  font-size: 42px;
+}
+
+.empty-state h3 {
+  margin: 0 0 8px;
+
+  color: #e2e8f0;
+
+  font-size: 18px;
+}
+
+.empty-state p {
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 13px;
+}
+
+
+/* =========================
+   Responsive
+   ========================= */
+
+@media (max-width: 700px) {
+
+  .page-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .page-header h2 {
+    font-size: 27px;
+  }
+
+  .create-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .solar-system-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+@media (max-width: 420px) {
+
+  .system-content {
+    padding: 16px;
+  }
+
+  .card-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .actions {
+    width: 100%;
+  }
+
+}

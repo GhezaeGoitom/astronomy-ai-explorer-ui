@@ -1,0 +1,94 @@
+<section class="login-page">
+
+  <div class="login-card">
+
+    <div class="login-header">
+
+      <div class="login-icon">
+        ✦
+      </div>
+
+      <span class="eyebrow">
+        ASTRONOMY EXPLORER
+      </span>
+
+      <h1>Welcome back</h1>
+
+      <p>
+        Sign in to continue exploring the universe.
+      </p>
+
+    </div>
+
+
+    <form (ngSubmit)="login()">
+
+      <div class="form-field">
+
+        <label for="username">
+          Username
+        </label>
+
+        <input
+          id="username"
+          name="username"
+          type="text"
+          [(ngModel)]="username"
+          placeholder="Enter your username"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-field">
+
+        <label for="password">
+          Password
+        </label>
+
+        <input
+          id="password"
+          name="password"
+          type="password"
+          [(ngModel)]="password"
+          placeholder="Enter your password"
+          required
+        >
+
+      </div>
+
+
+      @if (error()) {
+
+        <div class="login-error">
+          {{ error() }}
+        </div>
+
+      }
+
+
+      <button
+        type="submit"
+        class="login-button"
+        [disabled]="loading()"
+      >
+        {{ loading() ? 'Signing in...' : 'Sign In' }}
+      </button>
+
+    </form>
+
+
+    <div class="register-link">
+
+      <span>Don't have an account?</span>
+
+      <a routerLink="/register">
+        Create an account
+      </a>
+
+    </div>
+
+  </div>
+
+</section>

@@ -1,0 +1,197 @@
+<section class="black-hole-list">
+
+  <div class="page-header">
+
+<div>
+  <span class="eyebrow">ASTRONOMY</span>
+
+  <h2>Black Holes</h2>
+
+  <p>
+    Explore some of the most extreme and mysterious objects in the universe.
+  </p>
+</div>
+
+@if (authService.canModify()) {
+  <a
+    routerLink="/black-holes/create"
+    class="create-button"
+  >
+    <span>+</span>
+    Create Black Hole
+  </a>
+}
+
+  </div>
+
+@if (blackHoles().length === 0) {
+
+<div class="empty-state">
+
+  <div class="empty-icon">●</div>
+
+  <h3>No black holes found</h3>
+
+  <p>
+    There are currently no black holes available in the database.
+  </p>
+
+</div>
+
+} @else {
+
+<div class="black-hole-grid">
+
+  @for (blackHole of blackHoles(); track blackHole.id) {
+
+    <article class="black-hole-card">
+
+      <div class="black-hole-visual">
+
+        <div class="gravitational-glow"></div>
+
+        <div class="accretion-disk disk-one"></div>
+        <div class="accretion-disk disk-two"></div>
+
+        <div class="gravity-ring ring-one"></div>
+        <div class="gravity-ring ring-two"></div>
+
+        <div class="event-horizon">
+          <div class="singularity"></div>
+        </div>
+
+      </div>
+
+
+      <div class="black-hole-content">
+
+        <div class="black-hole-heading">
+
+          <div>
+
+            <span class="black-hole-label">
+              BLACK HOLE
+            </span>
+
+            <h3>
+              {{ blackHole.name }}
+            </h3>
+
+          </div>
+
+          <span class="black-hole-id">
+            #{{ blackHole.id }}
+          </span>
+
+        </div>
+
+
+        <p class="description">
+          {{ blackHole.description || 'No description available.' }}
+        </p>
+
+
+        <div class="properties">
+
+          <div class="property">
+
+            <span>Object Size</span>
+
+            <strong>
+              {{ blackHole.objectSize ?? 'N/A' }}
+            </strong>
+
+          </div>
+
+          <div class="property">
+
+            <span>Object Mass</span>
+
+            <strong>
+              {{ blackHole.objectMass ?? 'N/A' }}
+            </strong>
+
+          </div>
+
+          <div class="property">
+
+            <span>Galaxy</span>
+
+            <strong>
+              #{{ blackHole.galaxyId ?? 'N/A' }}
+            </strong>
+
+          </div>
+
+          <div class="property">
+
+            <span>Discovery</span>
+
+            <strong>
+              #{{ blackHole.discoverId ?? 'N/A' }}
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <div class="card-footer">
+
+          <a
+            [routerLink]="[
+              '/black-holes',
+              blackHole.id
+            ]"
+            class="view-link"
+          >
+            View details
+            <span>→</span>
+          </a>
+
+
+          <div class="actions">
+
+            @if (authService.canModify()) {
+
+              <a
+                [routerLink]="[
+                  '/black-holes',
+                  blackHole.id,
+                  'edit'
+                ]"
+                class="edit-button"
+              >
+                Edit
+              </a>
+
+            }
+
+
+            @if (authService.isAdmin()) {
+
+              <button
+                type="button"
+                class="delete-button"
+                (click)="deleteBlackHole(blackHole.id)"
+              >
+                Delete
+              </button>
+
+            }
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </article>
+
+  }
+
+</div>
+
+}
+
+</section>

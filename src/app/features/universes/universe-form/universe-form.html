@@ -1,0 +1,174 @@
+<section class="universe-form-page">
+
+  <div class="page-header">
+
+    <a
+      class="back-link"
+      routerLink="/universes"
+    >
+      ← Back to Universes
+    </a>
+
+    <div class="title-row">
+
+      <div>
+        <span class="eyebrow">
+          COSMOLOGICAL STRUCTURE
+        </span>
+
+        <h1>
+          {{
+            isEditMode()
+              ? 'Edit Universe'
+              : 'Create Universe'
+          }}
+        </h1>
+
+        <p class="page-description">
+          {{
+            isEditMode()
+              ? 'Update the information and coordinates for this universe.'
+              : 'Add a new universe to the astronomy explorer.'
+          }}
+        </p>
+      </div>
+
+      <div class="universe-icon">
+        🌌
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <form
+    class="universe-form"
+    [formGroup]="universeForm"
+    (ngSubmit)="submit()"
+  >
+
+    <div class="form-section">
+
+      <div class="section-heading">
+        <span>BASIC INFORMATION</span>
+        <h2>Universe Details</h2>
+      </div>
+
+
+      <div class="form-grid">
+
+        <div class="form-field full-width">
+
+          <label for="name">
+            Universe Name
+          </label>
+
+          <input
+            id="name"
+            type="text"
+            formControlName="name"
+            placeholder="Enter universe name"
+          >
+
+          @if (
+            universeForm.controls.name.touched &&
+            universeForm.controls.name.hasError('required')
+          ) {
+            <small class="error">
+              Universe name is required.
+            </small>
+          }
+
+          @if (
+            universeForm.controls.name.touched &&
+            universeForm.controls.name.hasError('maxlength')
+          ) {
+            <small class="error">
+              Name cannot exceed 100 characters.
+            </small>
+          }
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label for="coordinate">
+            Coordinate
+          </label>
+
+          <input
+            id="coordinate"
+            type="text"
+            formControlName="coordinate"
+            placeholder="Enter coordinate"
+          >
+
+          @if (
+            universeForm.controls.coordinate.touched &&
+            universeForm.controls.coordinate.hasError('maxlength')
+          ) {
+            <small class="error">
+              Coordinate cannot exceed 100 characters.
+            </small>
+          }
+
+        </div>
+
+
+        <div class="form-field full-width">
+
+          <label for="description">
+            Description
+          </label>
+
+          <textarea
+            id="description"
+            formControlName="description"
+            rows="6"
+            placeholder="Describe this universe..."
+          ></textarea>
+
+          @if (
+            universeForm.controls.description.touched &&
+            universeForm.controls.description.hasError('maxlength')
+          ) {
+            <small class="error">
+              Description cannot exceed 5000 characters.
+            </small>
+          }
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="form-actions">
+
+      <a
+        class="cancel-button"
+        routerLink="/universes"
+      >
+        Cancel
+      </a>
+
+      <button
+        type="submit"
+        class="submit-button"
+        [disabled]="universeForm.invalid"
+      >
+        {{
+          isEditMode()
+            ? 'Update Universe'
+            : 'Create Universe'
+        }}
+      </button>
+
+    </div>
+
+  </form>
+
+</section>

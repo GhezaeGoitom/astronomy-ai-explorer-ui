@@ -1,0 +1,226 @@
+<section class="user-list-page">
+
+  <div class="page-header">
+
+    <div>
+      <span class="eyebrow">
+        ADMINISTRATION
+      </span>
+
+      <h1>User Management</h1>
+
+      <p class="page-description">
+        Manage application users, roles, account status, and profiles.
+      </p>
+    </div>
+
+    <a
+      class="create-button"
+      routerLink="/admin/users/create"
+    >
+      + Create User
+    </a>
+
+  </div>
+
+
+  @if (loading()) {
+
+    <div class="state-card">
+      <div class="state-icon">
+        ◌
+      </div>
+
+      <h2>Loading users...</h2>
+
+      <p>
+        Retrieving user accounts.
+      </p>
+    </div>
+
+  }
+
+
+  @if (!loading() && users().length === 0) {
+
+    <div class="state-card">
+      <div class="state-icon">
+        👤
+      </div>
+
+      <h2>No users found</h2>
+
+      <p>
+        There are currently no users to display.
+      </p>
+
+      <a
+        class="create-button"
+        routerLink="/admin/users/create"
+      >
+        Create First User
+      </a>
+    </div>
+
+  }
+
+
+  @if (!loading() && users().length > 0) {
+
+    <div class="users-card">
+
+      <div class="table-header">
+
+        <div>
+          <span class="table-eyebrow">
+            USER ACCOUNTS
+          </span>
+
+          <h2>
+            {{ users().length }}
+            {{ users().length === 1 ? 'User' : 'Users' }}
+          </h2>
+        </div>
+
+      </div>
+
+
+      <div class="table-wrapper">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th>USER</th>
+              <th>EMAIL</th>
+              <th>ROLES</th>
+              <th>STATUS</th>
+              <th>PROFILE</th>
+              <th>ACTIONS</th>
+            </tr>
+          </thead>
+
+
+          <tbody>
+
+            @for (user of users(); track user.id) {
+
+              <tr>
+
+                <td>
+
+                  <div class="user-cell">
+
+                    <div class="avatar">
+                      {{ user.username.charAt(0).toUpperCase() }}
+                    </div>
+
+                    <div class="user-info">
+                      <strong>
+                        {{ user.username }}
+                      </strong>
+
+                      <small>
+                        ID #{{ user.id }}
+                      </small>
+                    </div>
+
+                  </div>
+
+                </td>
+
+
+                <td>
+                  <span class="email">
+                    {{ user.email }}
+                  </span>
+                </td>
+
+
+                <td>
+
+                  <div class="roles">
+
+                    @for (role of user.roles; track role) {
+
+                      <span
+                        class="role-badge"
+                        [class.admin-role]="role === 'ROLE_ADMIN'"
+                        [class.scientist-role]="role === 'ROLE_SCIENTIST'"
+                        [class.guest-role]="role === 'ROLE_GUEST'"
+                      >
+                        {{ role.replace('ROLE_', '') }}
+                      </span>
+
+                    }
+
+                  </div>
+
+                </td>
+
+
+                <td>
+
+                  <span
+                    class="status-badge"
+                    [class.enabled]="user.enabled"
+                    [class.disabled]="!user.enabled"
+                  >
+                    <span class="status-dot"></span>
+
+                    {{ user.enabled ? 'Enabled' : 'Disabled' }}
+                  </span>
+
+                </td>
+
+
+                <td>
+
+                  <span
+                    class="profile-badge"
+                    [class.has-profile]="user.hasPersonProfile"
+                  >
+                    {{ user.hasPersonProfile ? 'Complete' : 'None' }}
+                  </span>
+
+                </td>
+
+
+                <td>
+
+                  <div class="actions">
+
+                    <a
+                      class="edit-button"
+                      [routerLink]="['/admin/users', user.id, 'edit']"
+                    >
+                      Edit
+                    </a>
+
+                    <button
+                      type="button"
+                      class="delete-button"
+                      (click)="deleteUser(user.id)"
+                    >
+                      Delete
+                    </button>
+
+                  </div>
+
+                </td>
+
+              </tr>
+
+            }
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  }
+
+</section>

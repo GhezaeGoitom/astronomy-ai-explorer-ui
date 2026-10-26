@@ -1,0 +1,180 @@
+<section class="galaxy-list">
+
+  <div class="page-header">
+
+    <div>
+      <span class="eyebrow">ASTRONOMY</span>
+
+      <h2>Galaxies</h2>
+
+      <p>
+        Explore galaxies, cosmic structures, and their place in the universe.
+      </p>
+    </div>
+
+    @if (authService.canModify()) {
+      <a routerLink="/galaxies/create" class="create-button">
+        <span>+</span>
+        Create Galaxy
+      </a>
+    }
+
+  </div>
+
+
+  @if (galaxies().length === 0) {
+
+    <div class="empty-state">
+
+      <div class="empty-icon">◌</div>
+
+      <h3>No galaxies found</h3>
+
+      <p>
+        There are currently no galaxies available in the database.
+      </p>
+
+    </div>
+
+  } @else {
+
+    <div class="galaxy-grid">
+
+      @for (galaxy of galaxies(); track galaxy.id) {
+
+        <article class="galaxy-card">
+
+          <div class="galaxy-visual">
+
+            <div class="galaxy-glow"></div>
+
+            <div class="galaxy-core"></div>
+
+            <div class="galaxy-orbit orbit-one"></div>
+            <div class="galaxy-orbit orbit-two"></div>
+            <div class="galaxy-orbit orbit-three"></div>
+
+          </div>
+
+
+          <div class="galaxy-content">
+
+            <div class="galaxy-heading">
+
+              <div>
+
+                <span class="galaxy-label">GALAXY</span>
+
+                <h3>
+                  <a [routerLink]="['/galaxies', galaxy.id]">
+                    {{ galaxy.name }}
+                  </a>
+                </h3>
+
+              </div>
+
+              <span class="galaxy-id">
+                #{{ galaxy.id }}
+              </span>
+
+            </div>
+
+
+            <p class="description">
+              {{ galaxy.description || 'No description available.' }}
+            </p>
+
+
+            <div class="properties">
+
+              <div class="property">
+
+                <span>Universe</span>
+
+                <strong>
+                  {{ galaxy.universeId }}
+                </strong>
+
+              </div>
+
+
+              <div class="property">
+
+                <span>Cluster</span>
+
+                <strong>
+                  {{ galaxy.galacticClusterId }}
+                </strong>
+
+              </div>
+
+
+              <div class="property">
+
+                <span>Discover</span>
+
+                <strong>
+                  {{ galaxy.discoverId }}
+                </strong>
+
+              </div>
+
+            </div>
+
+
+            <div class="card-footer">
+
+              <a
+                [routerLink]="['/galaxies', galaxy.id]"
+                class="view-link"
+              >
+                View details
+                <span>→</span>
+              </a>
+
+
+              <div class="actions">
+
+                @if (authService.canModify()) {
+
+                  <a
+                    [routerLink]="[
+                      '/galaxies',
+                      galaxy.id,
+                      'edit'
+                    ]"
+                    class="edit-button"
+                  >
+                    Edit
+                  </a>
+
+                }
+
+
+                @if (authService.isAdmin()) {
+
+                  <button
+                    type="button"
+                    class="delete-button"
+                    (click)="deleteGalaxy(galaxy.id)"
+                  >
+                    Delete
+                  </button>
+
+                }
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      }
+
+    </div>
+
+  }
+
+</section>

@@ -1,0 +1,166 @@
+<section class="universe-list">
+
+  <div class="page-header">
+
+    <div>
+      <span class="eyebrow">ASTRONOMY</span>
+
+      <h2>Universes</h2>
+
+      <p>
+        Explore large-scale cosmic environments and their coordinates.
+      </p>
+    </div>
+
+    @if (authService.canModify()) {
+      <a
+        routerLink="/universes/create"
+        class="create-button"
+      >
+        <span>+</span>
+        Create Universe
+      </a>
+    }
+
+  </div>
+
+
+  @if (universes().length === 0) {
+
+    <div class="empty-state">
+
+      <div class="empty-icon">◈</div>
+
+      <h3>No universes found</h3>
+
+      <p>
+        There are currently no universes available in the database.
+      </p>
+
+    </div>
+
+  } @else {
+
+    <div class="universe-grid">
+
+      @for (universe of universes(); track universe.id) {
+
+        <article class="universe-card">
+
+          <div class="universe-visual">
+
+            <div class="universe-glow"></div>
+
+            <div class="universe-ring ring-one"></div>
+            <div class="universe-ring ring-two"></div>
+            <div class="universe-ring ring-three"></div>
+
+            <div class="universe-core">
+              ◈
+            </div>
+
+          </div>
+
+
+          <div class="universe-content">
+
+            <div class="universe-heading">
+
+              <div>
+
+                <span class="universe-label">
+                  UNIVERSE
+                </span>
+
+                <h3>
+                  {{ universe.name }}
+                </h3>
+
+              </div>
+
+              <span class="universe-id">
+                #{{ universe.id }}
+              </span>
+
+            </div>
+
+
+            <p class="description">
+              {{ universe.description || 'No description available.' }}
+            </p>
+
+
+            <div class="properties">
+
+              <div class="property">
+
+                <span>Coordinate</span>
+
+                <strong>
+                  {{ universe.coordinate || 'N/A' }}
+                </strong>
+
+              </div>
+
+            </div>
+
+
+            <div class="card-footer">
+
+              <a
+                [routerLink]="[
+                  '/universes',
+                  universe.id
+                ]"
+                class="view-link"
+              >
+                View details
+                <span>→</span>
+              </a>
+
+
+              <div class="actions">
+
+                @if (authService.canModify()) {
+
+                  <a
+                    [routerLink]="[
+                      '/universes',
+                      universe.id,
+                      'edit'
+                    ]"
+                    class="edit-button"
+                  >
+                    Edit
+                  </a>
+
+                }
+
+
+                @if (authService.isAdmin()) {
+
+                  <button
+                    type="button"
+                    class="delete-button"
+                    (click)="deleteUniverse(universe.id)"
+                  >
+                    Delete
+                  </button>
+
+                }
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      }
+
+    </div>
+
+  }
+
+</section>

@@ -1,0 +1,115 @@
+<section class="galaxy-detail">
+
+@if (galaxy(); as currentGalaxy) {
+
+<div class="page-header">
+
+  <div>
+    <a class="back-link" routerLink="/galaxies">
+      ← Back to Galaxies
+    </a>
+
+    <div class="title-row">
+
+      <div>
+        <span class="eyebrow">ASTRONOMICAL OBJECT</span>
+        <h1>{{ currentGalaxy.name }}</h1>
+      </div>
+
+      @if (authService.canModify()) {
+        <a
+          class="edit-button"
+          [routerLink]="[
+            '/galaxies',
+            currentGalaxy.id,
+            'edit'
+          ]"
+        >
+          Edit Galaxy
+        </a>
+      }
+
+    </div>
+  </div>
+
+</div>
+
+
+<div class="galaxy-content">
+
+  <div class="galaxy-hero">
+
+    <div class="galaxy-icon">
+      ◌
+    </div>
+
+    <div>
+      <span>Galaxy</span>
+
+      <h2>{{ currentGalaxy.name }}</h2>
+
+      <p>
+        Explore the structure, location, and discovery
+        information associated with this galaxy.
+      </p>
+    </div>
+
+  </div>
+
+
+  <div class="galaxy-info">
+
+    <div class="info-card">
+      <span>Universe</span>
+      <strong>
+        {{ currentGalaxy.universeId ?? 'N/A' }}
+      </strong>
+    </div>
+
+    <div class="info-card">
+      <span>Galactic Cluster</span>
+      <strong>
+        {{ currentGalaxy.galacticClusterId ?? 'N/A' }}
+      </strong>
+    </div>
+
+    <div class="info-card">
+      <span>Discovery Record</span>
+      <strong>
+        {{ currentGalaxy.discoverId ?? 'N/A' }}
+      </strong>
+    </div>
+
+  </div>
+
+
+  <div class="description-card">
+
+    <div class="section-heading">
+      <span>ABOUT</span>
+      <h2>Description</h2>
+    </div>
+
+    <p>
+      {{
+        currentGalaxy.description ||
+        'No description available.'
+      }}
+    </p>
+
+  </div>
+
+</div>
+
+
+} @else {
+
+
+<div class="loading">
+  <p>Loading galaxy...</p>
+</div>
+
+
+}
+
+</section>

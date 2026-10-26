@@ -1,0 +1,165 @@
+<section class="galactic-cluster-form-page">
+
+  <div class="page-header">
+
+    <a
+      class="back-link"
+      routerLink="/galactic-clusters"
+    >
+      ← Back to Galactic Clusters
+    </a>
+
+    <div class="title-row">
+
+      <div>
+        <span class="eyebrow">
+          GALACTIC STRUCTURE
+        </span>
+
+        <h1>
+          {{
+            isEditMode()
+              ? 'Edit Galactic Cluster'
+              : 'Create Galactic Cluster'
+          }}
+        </h1>
+
+        <p class="page-description">
+          {{
+            isEditMode()
+              ? 'Update the information for this galactic cluster.'
+              : 'Add a new galactic cluster to the astronomy explorer.'
+          }}
+        </p>
+      </div>
+
+      <div class="galactic-cluster-icon">
+        ✨
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <form
+    class="galactic-cluster-form"
+    [formGroup]="galacticClusterForm"
+    (ngSubmit)="submit()"
+  >
+
+    <div class="form-section">
+
+      <div class="section-heading">
+        <span>CLUSTER INFORMATION</span>
+        <h2>Galactic Cluster Details</h2>
+      </div>
+
+
+      <div class="form-grid">
+
+        <div class="form-field full-width">
+
+          <label for="name">
+            Cluster Name
+          </label>
+
+          <input
+            id="name"
+            type="text"
+            formControlName="name"
+            placeholder="Enter galactic cluster name"
+          >
+
+          @if (
+            galacticClusterForm.controls.name.touched &&
+            galacticClusterForm.controls.name.hasError('required')
+          ) {
+            <small class="error">
+              Galactic cluster name is required.
+            </small>
+          }
+
+          @if (
+            galacticClusterForm.controls.name.touched &&
+            galacticClusterForm.controls.name.hasError('maxlength')
+          ) {
+            <small class="error">
+              Name cannot exceed 100 characters.
+            </small>
+          }
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label for="galacticSuperClusterId">
+            Galactic Supercluster ID
+          </label>
+
+          <input
+            id="galacticSuperClusterId"
+            type="number"
+            formControlName="galacticSuperClusterId"
+            placeholder="Optional"
+          >
+
+        </div>
+
+
+        <div class="form-field full-width">
+
+          <label for="description">
+            Description
+          </label>
+
+          <textarea
+            id="description"
+            formControlName="description"
+            rows="6"
+            placeholder="Describe this galactic cluster..."
+          ></textarea>
+
+          @if (
+            galacticClusterForm.controls.description.touched &&
+            galacticClusterForm.controls.description.hasError('maxlength')
+          ) {
+            <small class="error">
+              Description cannot exceed 5000 characters.
+            </small>
+          }
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="form-actions">
+
+      <a
+        class="cancel-button"
+        routerLink="/galactic-clusters"
+      >
+        Cancel
+      </a>
+
+      <button
+        type="submit"
+        class="submit-button"
+        [disabled]="galacticClusterForm.invalid"
+      >
+        {{
+          isEditMode()
+            ? 'Update Galactic Cluster'
+            : 'Create Galactic Cluster'
+        }}
+      </button>
+
+    </div>
+
+  </form>
+
+</section>

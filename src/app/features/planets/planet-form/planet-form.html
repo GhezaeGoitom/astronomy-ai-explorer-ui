@@ -1,0 +1,280 @@
+<section class="planet-form-page">
+
+  <div class="page-header">
+
+    <a
+      class="back-link"
+      routerLink="/planets"
+    >
+      ← Back to Planets
+    </a>
+
+    <div class="title-row">
+
+      <div>
+        <span class="eyebrow">
+          PLANET MANAGEMENT
+        </span>
+
+        <h1>
+          {{ isEditMode() ? 'Edit Planet' : 'Create Planet' }}
+        </h1>
+
+        <p class="subtitle">
+          {{
+            isEditMode()
+              ? 'Update the astronomical information for this planet.'
+              : 'Add a new planet to the astronomy database.'
+          }}
+        </p>
+      </div>
+
+      <div class="planet-form-icon">
+        🪐
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <form
+    class="planet-form"
+    [formGroup]="planetForm"
+    (ngSubmit)="submit()"
+  >
+
+    <div class="form-card">
+
+      <div class="section-heading">
+        <span>IDENTIFICATION</span>
+        <h2>Basic Information</h2>
+      </div>
+
+
+      <div class="form-grid">
+
+        <div class="form-field full-width">
+
+          <label for="name">
+            Name
+          </label>
+
+          <input
+            id="name"
+            type="text"
+            formControlName="name"
+            placeholder="Enter planet name"
+          />
+
+          @if (
+            planetForm.controls.name.touched &&
+            planetForm.controls.name.hasError('required')
+          ) {
+            <small class="error">
+              Planet name is required.
+            </small>
+          }
+
+          @if (
+            planetForm.controls.name.touched &&
+            planetForm.controls.name.hasError('maxlength')
+          ) {
+            <small class="error">
+              Name cannot exceed 100 characters.
+            </small>
+          }
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label for="objectSize">
+            Object Size
+          </label>
+
+          <input
+            id="objectSize"
+            type="number"
+            formControlName="objectSize"
+            placeholder="Enter size"
+          />
+
+          @if (
+            planetForm.controls.objectSize.touched &&
+            planetForm.controls.objectSize.hasError('min')
+          ) {
+            <small class="error">
+              Object size must be at least 1.
+            </small>
+          }
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label for="objectMass">
+            Object Mass
+          </label>
+
+          <input
+            id="objectMass"
+            type="number"
+            formControlName="objectMass"
+            placeholder="Enter mass"
+          />
+
+          @if (
+            planetForm.controls.objectMass.touched &&
+            planetForm.controls.objectMass.hasError('min')
+          ) {
+            <small class="error">
+              Object mass must be at least 1.
+            </small>
+          }
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label for="score">
+            Score
+          </label>
+
+          <input
+            id="score"
+            type="number"
+            formControlName="score"
+            placeholder="Enter score"
+          />
+
+          @if (
+            planetForm.controls.score.touched &&
+            planetForm.controls.score.hasError('min')
+          ) {
+            <small class="error">
+              Score cannot be negative.
+            </small>
+          }
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="form-card">
+
+      <div class="section-heading">
+        <span>DESCRIPTION</span>
+        <h2>Planet Details</h2>
+      </div>
+
+      <div class="form-field">
+
+        <label for="description">
+          Description
+        </label>
+
+        <textarea
+          id="description"
+          rows="6"
+          formControlName="description"
+          placeholder="Describe this planet..."
+        ></textarea>
+
+        @if (
+          planetForm.controls.description.touched &&
+          planetForm.controls.description.hasError('maxlength')
+        ) {
+          <small class="error">
+            Description cannot exceed 5000 characters.
+          </small>
+        }
+
+      </div>
+
+    </div>
+
+
+    <div class="form-card">
+
+      <div class="section-heading">
+        <span>RELATIONSHIPS</span>
+        <h2>Associated Records</h2>
+      </div>
+
+
+      <div class="form-grid">
+
+        <div class="form-field">
+
+          <label for="solarSystemId">
+            Solar System ID
+          </label>
+
+          <input
+            id="solarSystemId"
+            type="number"
+            formControlName="solarSystemId"
+            placeholder="Enter solar system ID"
+          />
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label for="discoverId">
+            Discover ID
+          </label>
+
+          <input
+            id="discoverId"
+            type="number"
+            formControlName="discoverId"
+            placeholder="Enter discovery ID"
+          />
+
+          @if (
+            planetForm.controls.discoverId.touched &&
+            planetForm.controls.discoverId.hasError('required')
+          ) {
+            <small class="error">
+              Discover ID is required.
+            </small>
+          }
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="form-actions">
+
+      <a
+        class="cancel-button"
+        routerLink="/planets"
+      >
+        Cancel
+      </a>
+
+      <button
+        class="submit-button"
+        type="submit"
+        [disabled]="planetForm.invalid"
+      >
+        {{ isEditMode() ? 'Update Planet' : 'Create Planet' }}
+      </button>
+
+    </div>
+
+  </form>
+
+</section>

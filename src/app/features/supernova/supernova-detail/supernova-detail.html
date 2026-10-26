@@ -1,0 +1,156 @@
+<section class="supernova-detail">
+
+  @if (supernova(); as currentSupernova) {
+
+    <div class="page-header">
+
+      <div>
+        <a
+          class="back-link"
+          routerLink="/supernovae"
+        >
+          ← Back to Supernovae
+        </a>
+
+        <div class="title-row">
+
+          <div>
+            <span class="eyebrow">
+              STELLAR EXPLOSION
+            </span>
+
+            <h1>
+              {{ currentSupernova.name }}
+            </h1>
+          </div>
+
+          @if (authService.canModify()) {
+            <a
+              class="edit-button"
+              [routerLink]="[
+                '/supernovae',
+                currentSupernova.id,
+                'edit'
+              ]"
+            >
+              Edit Supernova
+            </a>
+          }
+
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="supernova-content">
+
+      <!-- Hero -->
+
+      <div class="supernova-hero">
+
+        <div class="supernova-icon">
+          💥
+        </div>
+
+        <div>
+
+          <span>Supernova</span>
+
+          <h2>
+            {{ currentSupernova.name }}
+          </h2>
+
+          <p>
+            Explore the explosive stellar event, its
+            brightness, cosmic location, and discovery
+            information.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- Information -->
+
+      <div class="supernova-info">
+
+        <div class="info-card brightness-card">
+
+          <span>Brightness</span>
+
+          <strong>
+            {{ currentSupernova.brightness ?? 'N/A' }}
+          </strong>
+
+        </div>
+
+
+        <div class="info-card">
+
+          <span>Universe</span>
+
+          <strong>
+            {{ currentSupernova.universeId ?? 'N/A' }}
+          </strong>
+
+        </div>
+
+
+        <div class="info-card">
+
+          <span>Discovery Record</span>
+
+          <strong>
+            {{ currentSupernova.discoverId ?? 'N/A' }}
+          </strong>
+
+        </div>
+
+
+        <div class="info-card">
+
+          <span>Object ID</span>
+
+          <strong>
+            {{ currentSupernova.id }}
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <!-- Description -->
+
+      <div class="description-card">
+
+        <div class="section-heading">
+
+          <span>ABOUT</span>
+
+          <h2>Description</h2>
+
+        </div>
+
+        <p>
+          {{
+            currentSupernova.description ||
+            'No description available.'
+          }}
+        </p>
+
+      </div>
+
+    </div>
+
+  } @else {
+
+    <div class="loading">
+      <p>Loading supernova...</p>
+    </div>
+
+  }
+
+</section>

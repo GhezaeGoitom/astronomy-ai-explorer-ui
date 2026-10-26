@@ -1,0 +1,111 @@
+<section class="planet-detail">
+
+@if (planet(); as currentPlanet) {
+
+<div class="page-header">
+
+  <div>
+    <a class="back-link" routerLink="/planets">
+      ← Back to Planets
+    </a>
+
+    <div class="title-row">
+      <div>
+        <span class="eyebrow">ASTRONOMICAL OBJECT</span>
+        <h1>{{ currentPlanet.name }}</h1>
+      </div>
+
+      @if (authService.canModify()) {
+  <a
+    class="edit-button"
+    [routerLink]="['/planets', currentPlanet.id, 'edit']"
+  >
+    Edit Planet
+  </a>
+}
+    </div>
+  </div>
+
+</div>
+
+
+<div class="planet-content">
+
+  <div class="planet-hero">
+
+    <div class="planet-icon">
+      🪐
+    </div>
+
+    <div>
+      <span>Planet</span>
+      <h2>{{ currentPlanet.name }}</h2>
+      <p>
+        Explore the physical properties and astronomical
+        information associated with this planet.
+      </p>
+    </div>
+
+  </div>
+
+
+  <div class="planet-info">
+
+    <div class="info-card">
+      <span>Object Size</span>
+      <strong>{{ currentPlanet.objectSize || 'N/A' }}</strong>
+    </div>
+
+    <div class="info-card">
+      <span>Object Mass</span>
+      <strong>{{ currentPlanet.objectMass || 'N/A' }}</strong>
+    </div>
+
+    <div class="info-card">
+      <span>Discovery Score</span>
+      <strong>{{ currentPlanet.score ?? 'N/A' }}</strong>
+    </div>
+
+    <div class="info-card">
+      <span>Solar System</span>
+      <strong>
+        {{ currentPlanet.solarSystemId ?? 'N/A' }}
+      </strong>
+    </div>
+
+    <div class="info-card">
+      <span>Discovery Record</span>
+      <strong>
+        {{ currentPlanet.discoverId ?? 'N/A' }}
+      </strong>
+    </div>
+
+  </div>
+
+
+  <div class="description-card">
+
+    <div class="section-heading">
+      <span>ABOUT</span>
+      <h2>Description</h2>
+    </div>
+
+    <p>
+      {{ currentPlanet.description || 'No description available.' }}
+    </p>
+
+  </div>
+
+</div>
+
+
+} @else {
+
+
+<div class="loading">
+  <p>Loading planet...</p>
+</div>
+
+}
+
+</section>

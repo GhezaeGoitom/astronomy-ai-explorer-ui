@@ -1,0 +1,209 @@
+<section class="star-form-page">
+
+  <div class="page-header">
+
+    <a class="back-link" routerLink="/stars">
+      ← Back to Stars
+    </a>
+
+    <div class="title-row">
+
+      <div>
+        <span class="eyebrow">ASTRONOMICAL OBJECT</span>
+
+        <h1>
+          {{ isEditMode() ? 'Edit Star' : 'Create Star' }}
+        </h1>
+
+        <p class="page-description">
+          {{
+            isEditMode()
+              ? 'Update the astronomical information for this star.'
+              : 'Add a new star to the astronomy explorer.'
+          }}
+        </p>
+      </div>
+
+      <div class="star-icon">
+        ⭐
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <form
+    class="star-form"
+    [formGroup]="starForm"
+    (ngSubmit)="submit()"
+  >
+
+    <div class="form-section">
+
+      <div class="section-heading">
+        <span>BASIC INFORMATION</span>
+        <h2>Star Details</h2>
+      </div>
+
+
+      <div class="form-grid">
+
+        <div class="form-field full-width">
+
+          <label for="name">
+            Star Name
+          </label>
+
+          <input
+            id="name"
+            type="text"
+            formControlName="name"
+            placeholder="Enter star name"
+          />
+
+          @if (
+            starForm.controls.name.touched &&
+            starForm.controls.name.hasError('required')
+          ) {
+            <small class="error">
+              Star name is required.
+            </small>
+          }
+
+          @if (
+            starForm.controls.name.touched &&
+            starForm.controls.name.hasError('maxlength')
+          ) {
+            <small class="error">
+              Name cannot exceed 100 characters.
+            </small>
+          }
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label for="objectSize">
+            Object Size
+          </label>
+
+          <input
+            id="objectSize"
+            type="number"
+            formControlName="objectSize"
+            placeholder="Enter size"
+          />
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label for="objectMass">
+            Object Mass
+          </label>
+
+          <input
+            id="objectMass"
+            type="number"
+            formControlName="objectMass"
+            placeholder="Enter mass"
+          />
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label for="solarSystemId">
+            Solar System ID
+          </label>
+
+          <input
+            id="solarSystemId"
+            type="number"
+            formControlName="solarSystemId"
+            placeholder="Optional"
+          />
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label for="discoverId">
+            Discover ID
+          </label>
+
+          <input
+            id="discoverId"
+            type="number"
+            formControlName="discoverId"
+            placeholder="Enter discover ID"
+          />
+
+          @if (
+            starForm.controls.discoverId.touched &&
+            starForm.controls.discoverId.hasError('required')
+          ) {
+            <small class="error">
+              Discover ID is required.
+            </small>
+          }
+
+        </div>
+
+
+        <div class="form-field full-width">
+
+          <label for="description">
+            Description
+          </label>
+
+          <textarea
+            id="description"
+            formControlName="description"
+            rows="6"
+            placeholder="Describe this star..."
+          ></textarea>
+
+          @if (
+            starForm.controls.description.touched &&
+            starForm.controls.description.hasError('maxlength')
+          ) {
+            <small class="error">
+              Description cannot exceed 5000 characters.
+            </small>
+          }
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="form-actions">
+
+      <a
+        class="cancel-button"
+        routerLink="/stars"
+      >
+        Cancel
+      </a>
+
+      <button
+        type="submit"
+        class="submit-button"
+        [disabled]="starForm.invalid"
+      >
+        {{ isEditMode() ? 'Update Star' : 'Create Star' }}
+      </button>
+
+    </div>
+
+  </form>
+
+</section>

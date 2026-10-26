@@ -1,0 +1,146 @@
+<section class="planet-list">
+
+  <div class="page-header">
+
+    <div>
+      <span class="eyebrow">ASTRONOMY</span>
+
+      <h2>Planets</h2>
+
+      <p>
+        Explore planetary worlds and their physical properties.
+      </p>
+    </div>
+
+    @if (authService.canModify()) {
+      <a routerLink="/planets/create" class="create-button">
+        <span>+</span>
+        Create Planet
+      </a>
+    }
+
+  </div>
+
+
+  @if (planets().length === 0) {
+
+    <div class="empty-state">
+      <div class="empty-icon">◉</div>
+
+      <h3>No planets found</h3>
+
+      <p>
+        There are currently no planets available in the database.
+      </p>
+    </div>
+
+  } @else {
+
+    <div class="planet-grid">
+
+      @for (planet of planets(); track planet.id) {
+
+        <article class="planet-card">
+
+          <div class="planet-visual">
+            <div class="planet-glow"></div>
+            <div class="planet-symbol">◉</div>
+          </div>
+
+          <div class="planet-content">
+
+            <div class="planet-heading">
+
+              <div>
+                <span class="planet-label">PLANET</span>
+
+                <h3>
+                  <a [routerLink]="['/planets', planet.id]">
+                    {{ planet.name }}
+                  </a>
+                </h3>
+              </div>
+
+              <span class="planet-id">
+                #{{ planet.id }}
+              </span>
+
+            </div>
+
+
+            <p class="description">
+              {{ planet.description || 'No description available.' }}
+            </p>
+
+
+            <div class="properties">
+
+              <div class="property">
+                <span>Size</span>
+                <strong>{{ planet.objectSize }}</strong>
+              </div>
+
+              <div class="property">
+                <span>Mass</span>
+                <strong>{{ planet.objectMass }}</strong>
+              </div>
+
+              <div class="property">
+                <span>Score</span>
+                <strong>{{ planet.score }}</strong>
+              </div>
+
+            </div>
+
+
+            <div class="card-footer">
+
+              <a
+                [routerLink]="['/planets', planet.id]"
+                class="view-link"
+              >
+                View details
+                <span>→</span>
+              </a>
+
+
+              <div class="actions">
+
+                @if (authService.canModify()) {
+
+                  <a
+                    [routerLink]="['/planets', planet.id, 'edit']"
+                    class="edit-button"
+                  >
+                    Edit
+                  </a>
+
+                }
+
+                @if (authService.isAdmin()) {
+
+                  <button
+                    type="button"
+                    class="delete-button"
+                    (click)="deletePlanet(planet.id)"
+                  >
+                    Delete
+                  </button>
+
+                }
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      }
+
+    </div>
+
+  }
+
+</section>

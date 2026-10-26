@@ -1,0 +1,224 @@
+<section class="supernova-form-page">
+
+  <div class="page-header">
+
+    <a
+      class="back-link"
+      routerLink="/supernovae"
+    >
+      ← Back to Supernovae
+    </a>
+
+    <div class="title-row">
+
+      <div>
+        <span class="eyebrow">
+          STELLAR EXPLOSION
+        </span>
+
+        <h1>
+          {{
+            isEditMode()
+              ? 'Edit Supernova'
+              : 'Create Supernova'
+          }}
+        </h1>
+
+        <p class="page-description">
+          {{
+            isEditMode()
+              ? 'Update the astronomical information for this supernova.'
+              : 'Add a new supernova to the astronomy explorer.'
+          }}
+        </p>
+      </div>
+
+      <div class="supernova-icon">
+        💥
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <form
+    class="supernova-form"
+    [formGroup]="supernovaForm"
+    (ngSubmit)="submit()"
+  >
+
+    <div class="form-section">
+
+      <div class="section-heading">
+        <span>SUPERNOVA INFORMATION</span>
+        <h2>Supernova Details</h2>
+      </div>
+
+
+      <div class="form-grid">
+
+        <div class="form-field full-width">
+
+          <label for="name">
+            Supernova Name
+          </label>
+
+          <input
+            id="name"
+            type="text"
+            formControlName="name"
+            placeholder="Enter supernova name"
+          >
+
+          @if (
+            supernovaForm.controls.name.touched &&
+            supernovaForm.controls.name.hasError('required')
+          ) {
+            <small class="error">
+              Supernova name is required.
+            </small>
+          }
+
+          @if (
+            supernovaForm.controls.name.touched &&
+            supernovaForm.controls.name.hasError('maxlength')
+          ) {
+            <small class="error">
+              Name cannot exceed 100 characters.
+            </small>
+          }
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label for="brightness">
+            Brightness
+          </label>
+
+          <input
+            id="brightness"
+            type="number"
+            formControlName="brightness"
+            placeholder="Enter brightness"
+          >
+
+          @if (
+            supernovaForm.controls.brightness.touched &&
+            supernovaForm.controls.brightness.hasError('required')
+          ) {
+            <small class="error">
+              Brightness is required.
+            </small>
+          }
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label for="universeId">
+            Universe ID
+          </label>
+
+          <input
+            id="universeId"
+            type="number"
+            formControlName="universeId"
+            placeholder="Enter universe ID"
+          >
+
+          @if (
+            supernovaForm.controls.universeId.touched &&
+            supernovaForm.controls.universeId.hasError('required')
+          ) {
+            <small class="error">
+              Universe ID is required.
+            </small>
+          }
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label for="discoverId">
+            Discover ID
+          </label>
+
+          <input
+            id="discoverId"
+            type="number"
+            formControlName="discoverId"
+            placeholder="Enter discover ID"
+          >
+
+          @if (
+            supernovaForm.controls.discoverId.touched &&
+            supernovaForm.controls.discoverId.hasError('required')
+          ) {
+            <small class="error">
+              Discover ID is required.
+            </small>
+          }
+
+        </div>
+
+
+        <div class="form-field full-width">
+
+          <label for="description">
+            Description
+          </label>
+
+          <textarea
+            id="description"
+            formControlName="description"
+            rows="6"
+            placeholder="Describe this supernova..."
+          ></textarea>
+
+          @if (
+            supernovaForm.controls.description.touched &&
+            supernovaForm.controls.description.hasError('maxlength')
+          ) {
+            <small class="error">
+              Description cannot exceed 5000 characters.
+            </small>
+          }
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="form-actions">
+
+      <a
+        class="cancel-button"
+        routerLink="/supernovae"
+      >
+        Cancel
+      </a>
+
+      <button
+        type="submit"
+        class="submit-button"
+        [disabled]="supernovaForm.invalid"
+      >
+        {{
+          isEditMode()
+            ? 'Update Supernova'
+            : 'Create Supernova'
+        }}
+      </button>
+
+    </div>
+
+  </form>
+
+</section>

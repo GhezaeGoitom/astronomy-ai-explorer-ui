@@ -1,0 +1,231 @@
+<section class="black-hole-form-page">
+
+  <div class="page-header">
+
+    <a
+      class="back-link"
+      routerLink="/black-holes"
+    >
+      ← Back to Black Holes
+    </a>
+
+    <div class="title-row">
+
+      <div>
+        <span class="eyebrow">
+          COMPACT COSMIC OBJECT
+        </span>
+
+        <h1>
+          {{
+            isEditMode()
+              ? 'Edit Black Hole'
+              : 'Create Black Hole'
+          }}
+        </h1>
+
+        <p class="page-description">
+          {{
+            isEditMode()
+              ? 'Update the astronomical information for this black hole.'
+              : 'Add a new black hole to the astronomy explorer.'
+          }}
+        </p>
+      </div>
+
+      <div class="black-hole-icon">
+        🕳️
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <form
+    class="black-hole-form"
+    [formGroup]="blackHoleForm"
+    (ngSubmit)="submit()"
+  >
+
+    <div class="form-section">
+
+      <div class="section-heading">
+        <span>BLACK HOLE INFORMATION</span>
+        <h2>Black Hole Details</h2>
+      </div>
+
+
+      <div class="form-grid">
+
+        <div class="form-field full-width">
+
+          <label for="name">
+            Black Hole Name
+          </label>
+
+          <input
+            id="name"
+            type="text"
+            formControlName="name"
+            placeholder="Enter black hole name"
+          >
+
+          @if (
+            blackHoleForm.controls.name.touched &&
+            blackHoleForm.controls.name.hasError('required')
+          ) {
+            <small class="error">
+              Black hole name is required.
+            </small>
+          }
+
+          @if (
+            blackHoleForm.controls.name.touched &&
+            blackHoleForm.controls.name.hasError('maxlength')
+          ) {
+            <small class="error">
+              Name cannot exceed 100 characters.
+            </small>
+          }
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label for="objectSize">
+            Object Size
+          </label>
+
+          <input
+            id="objectSize"
+            type="number"
+            formControlName="objectSize"
+            placeholder="Enter object size"
+          >
+
+          @if (
+            blackHoleForm.controls.objectSize.touched &&
+            blackHoleForm.controls.objectSize.hasError('required')
+          ) {
+            <small class="error">
+              Object size is required.
+            </small>
+          }
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label for="objectMass">
+            Object Mass
+          </label>
+
+          <input
+            id="objectMass"
+            type="number"
+            formControlName="objectMass"
+            placeholder="Enter object mass"
+          >
+
+          @if (
+            blackHoleForm.controls.objectMass.touched &&
+            blackHoleForm.controls.objectMass.hasError('required')
+          ) {
+            <small class="error">
+              Object mass is required.
+            </small>
+          }
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label for="galaxyId">
+            Galaxy ID
+          </label>
+
+          <input
+            id="galaxyId"
+            type="number"
+            formControlName="galaxyId"
+            placeholder="Optional"
+          >
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label for="discoverId">
+            Discover ID
+          </label>
+
+          <input
+            id="discoverId"
+            type="number"
+            formControlName="discoverId"
+            placeholder="Optional"
+          >
+
+        </div>
+
+
+        <div class="form-field full-width">
+
+          <label for="description">
+            Description
+          </label>
+
+          <textarea
+            id="description"
+            formControlName="description"
+            rows="6"
+            placeholder="Describe this black hole..."
+          ></textarea>
+
+          @if (
+            blackHoleForm.controls.description.touched &&
+            blackHoleForm.controls.description.hasError('maxlength')
+          ) {
+            <small class="error">
+              Description cannot exceed 5000 characters.
+            </small>
+          }
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="form-actions">
+
+      <a
+        class="cancel-button"
+        routerLink="/black-holes"
+      >
+        Cancel
+      </a>
+
+      <button
+        type="submit"
+        class="submit-button"
+        [disabled]="blackHoleForm.invalid"
+      >
+        {{
+          isEditMode()
+            ? 'Update Black Hole'
+            : 'Create Black Hole'
+        }}
+      </button>
+
+    </div>
+
+  </form>
+
+</section>

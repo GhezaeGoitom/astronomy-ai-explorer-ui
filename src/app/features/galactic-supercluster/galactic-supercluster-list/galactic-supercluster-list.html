@@ -1,0 +1,189 @@
+<section class="supercluster-list">
+
+  <div class="page-header">
+
+<div>
+  <span class="eyebrow">ASTRONOMY</span>
+
+  <h2>Galactic Superclusters</h2>
+
+  <p>
+    Explore some of the largest known structures in the universe.
+  </p>
+</div>
+
+@if (authService.canModify()) {
+  <a
+    routerLink="/galactic-superclusters/create"
+    class="create-button"
+  >
+    <span>+</span>
+    Create Supercluster
+  </a>
+}
+
+
+  </div>
+
+@if (galacticSuperClusters().length === 0) {
+
+
+<div class="empty-state">
+
+  <div class="empty-icon">✧</div>
+
+  <h3>No galactic superclusters found</h3>
+
+  <p>
+    There are currently no galactic superclusters available in the database.
+  </p>
+
+</div>
+
+
+} @else {
+
+
+<div class="supercluster-grid">
+
+  @for (
+    supercluster of galacticSuperClusters();
+    track supercluster.id
+  ) {
+
+    <article class="supercluster-card">
+
+      <div class="supercluster-visual">
+
+        <div class="cosmic-web"></div>
+
+        <div class="cluster-node node-one">
+          ✦
+        </div>
+
+        <div class="cluster-node node-two">
+          ✦
+        </div>
+
+        <div class="cluster-node node-three">
+          ✦
+        </div>
+
+        <div class="cluster-node node-four">
+          ✦
+        </div>
+
+        <div class="cluster-node node-five">
+          ✦
+        </div>
+
+        <div class="supercluster-core">
+          ✧
+        </div>
+
+      </div>
+
+
+      <div class="supercluster-content">
+
+        <div class="supercluster-heading">
+
+          <div>
+
+            <span class="supercluster-label">
+              GALACTIC SUPERCLUSTER
+            </span>
+
+            <h3>
+              {{ supercluster.name }}
+            </h3>
+
+          </div>
+
+          <span class="supercluster-id">
+            #{{ supercluster.id }}
+          </span>
+
+        </div>
+
+
+        <p class="description">
+          {{ supercluster.description || 'No description available.' }}
+        </p>
+
+
+        <!-- <div class="properties">
+
+          <div class="property">
+
+            <span>Coordinate</span>
+
+            <strong>
+              {{ supercluster.coordinate || 'N/A' }}
+            </strong>
+
+          </div>
+
+        </div> -->
+
+
+        <div class="card-footer">
+
+          <a
+            [routerLink]="[
+              '/galactic-superclusters',
+              supercluster.id
+            ]"
+            class="view-link"
+          >
+            View details
+            <span>→</span>
+          </a>
+
+
+          <div class="actions">
+
+            @if (authService.canModify()) {
+
+              <a
+                [routerLink]="[
+                  '/galactic-superclusters',
+                  supercluster.id,
+                  'edit'
+                ]"
+                class="edit-button"
+              >
+                Edit
+              </a>
+
+            }
+
+
+            @if (authService.isAdmin()) {
+
+              <button
+                type="button"
+                class="delete-button"
+                (click)="deleteGalacticSuperCluster(supercluster.id)"
+              >
+                Delete
+              </button>
+
+            }
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </article>
+
+  }
+
+</div>
+
+
+}
+
+</section>

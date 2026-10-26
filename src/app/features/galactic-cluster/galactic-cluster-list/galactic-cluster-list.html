@@ -1,0 +1,181 @@
+<section class="cluster-list">
+
+  <div class="page-header">
+
+<div>
+  <span class="eyebrow">ASTRONOMY</span>
+
+  <h2>Galactic Clusters</h2>
+
+  <p>
+    Explore massive collections of galaxies bound together by gravity.
+  </p>
+</div>
+
+@if (authService.canModify()) {
+  <a
+    routerLink="/galactic-clusters/create"
+    class="create-button"
+  >
+    <span>+</span>
+    Create Galactic Cluster
+  </a>
+}
+```
+
+  </div>
+
+@if (galacticClusters().length === 0) {
+
+```
+<div class="empty-state">
+
+  <div class="empty-icon">✧</div>
+
+  <h3>No galactic clusters found</h3>
+
+  <p>
+    There are currently no galactic clusters available in the database.
+  </p>
+
+</div>
+```
+
+} @else {
+
+```
+<div class="cluster-grid">
+
+  @for (cluster of galacticClusters(); track cluster.id) {
+
+    <article class="cluster-card">
+
+      <div class="cluster-visual">
+
+        <div class="cluster-nebula"></div>
+
+        <div class="galaxy galaxy-one">
+          ✦
+        </div>
+
+        <div class="galaxy galaxy-two">
+          ✦
+        </div>
+
+        <div class="galaxy galaxy-three">
+          ✦
+        </div>
+
+        <div class="galaxy galaxy-four">
+          ✦
+        </div>
+
+        <div class="cluster-core">
+          ✧
+        </div>
+
+      </div>
+
+
+      <div class="cluster-content">
+
+        <div class="cluster-heading">
+
+          <div>
+
+            <span class="cluster-label">
+              GALACTIC CLUSTER
+            </span>
+
+            <h3>
+              {{ cluster.name }}
+            </h3>
+
+          </div>
+
+          <span class="cluster-id">
+            #{{ cluster.id }}
+          </span>
+
+        </div>
+
+
+        <p class="description">
+          {{ cluster.description || 'No description available.' }}
+        </p>
+
+
+        <div class="properties">
+
+          <div class="property">
+
+            <span>Supercluster</span>
+
+            <strong>
+              {{ cluster.galacticSuperClusterId ?? 'N/A' }}
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <div class="card-footer">
+
+          <a
+            [routerLink]="[
+              '/galactic-clusters',
+              cluster.id
+            ]"
+            class="view-link"
+          >
+            View details
+            <span>→</span>
+          </a>
+
+
+          <div class="actions">
+
+            @if (authService.canModify()) {
+
+              <a
+                [routerLink]="[
+                  '/galactic-clusters',
+                  cluster.id,
+                  'edit'
+                ]"
+                class="edit-button"
+              >
+                Edit
+              </a>
+
+            }
+
+
+            @if (authService.isAdmin()) {
+
+              <button
+                type="button"
+                class="delete-button"
+                (click)="deleteGalacticCluster(cluster.id)"
+              >
+                Delete
+              </button>
+
+            }
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </article>
+
+  }
+
+</div>
+
+}
+
+</section>

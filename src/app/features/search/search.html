@@ -1,0 +1,192 @@
+<section class="search-page">
+
+  <div class="page-header">
+
+    <div>
+      <span class="eyebrow">
+        AI-POWERED DISCOVERY
+      </span>
+
+      <h1>Semantic Search</h1>
+
+      <p class="page-description">
+        Search the astronomy database using natural language and discover
+        related cosmic objects.
+      </p>
+    </div>
+
+    <div class="search-icon">
+      🔭
+    </div>
+
+  </div>
+
+
+  <!-- Search -->
+
+  <div class="search-card">
+
+    <div class="search-box">
+
+      <input
+        type="text"
+        [ngModel]="query()"
+        (ngModelChange)="query.set($event)"
+        (keyup.enter)="search()"
+        placeholder="Search the universe..."
+        aria-label="Search the universe"
+      >
+
+      <button
+        type="button"
+        (click)="search()"
+        [disabled]="isSearching() || !query().trim()"
+      >
+        {{ isSearching() ? 'Searching...' : 'Search' }}
+      </button>
+
+    </div>
+
+    <p class="search-hint">
+      Try searches like
+      <span>“massive stars”</span>,
+      <span>“objects near galaxies”</span>, or
+      <span>“black holes”</span>.
+    </p>
+
+  </div>
+
+
+  <!-- Searching -->
+
+  @if (isSearching()) {
+
+    <div class="state-card">
+
+      <div class="loading-icon">
+        ✦
+      </div>
+
+      <h2>Searching the universe...</h2>
+
+      <p>
+        Finding the most relevant astronomical objects.
+      </p>
+
+    </div>
+
+  }
+
+
+  <!-- No results -->
+
+  @if (results().length === 0 && !isSearching()) {
+
+    <div class="state-card">
+
+      <div class="state-icon">
+        ✨
+      </div>
+
+      <h2>
+        {{
+          query().trim()
+            ? 'No results found'
+            : 'Explore the universe'
+        }}
+      </h2>
+
+      <p>
+        {{
+          query().trim()
+            ? 'Try a different search phrase or use more general terms.'
+            : 'Enter a natural-language search above to discover astronomical objects.'
+        }}
+      </p>
+
+    </div>
+
+  }
+
+
+  <!-- Results -->
+
+  @if (results().length > 0) {
+
+    <div class="results-header">
+
+      <div>
+        <span class="results-eyebrow">
+          SEARCH RESULTS
+        </span>
+
+        <h2>
+          {{ results().length }}
+          {{ results().length === 1 ? 'result' : 'results' }}
+          found
+        </h2>
+      </div>
+
+      <span class="query-badge">
+        "{{ query() }}"
+      </span>
+
+    </div>
+
+
+    <div class="results-grid">
+
+      @for (
+        result of results();
+        track result.entityType + '-' + result.entityId
+      ) {
+
+        <article class="result-card">
+
+          <div class="result-top">
+
+            <span class="entity-badge">
+              {{ result.entityType.replace('_', ' ') }}
+            </span>
+
+            <span class="entity-id">
+              #{{ result.entityId }}
+            </span>
+
+          </div>
+
+
+          <div class="result-content">
+
+            <p>
+              {{ result.content }}
+            </p>
+
+          </div>
+
+
+          <div class="result-footer">
+
+            <span class="entity-label">
+              {{ result.entityType.replace('_', ' ') }}
+            </span>
+
+            <button
+              type="button"
+              class="view-button"
+              (click)="viewEntity(result)"
+            >
+              View →
+            </button>
+
+          </div>
+
+        </article>
+
+      }
+
+    </div>
+
+  }
+
+</section>

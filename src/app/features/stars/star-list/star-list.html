@@ -1,0 +1,165 @@
+<section class="star-list">
+
+  <div class="page-header">
+
+    <div>
+      <span class="eyebrow">ASTRONOMY</span>
+
+      <h2>Stars</h2>
+
+      <p>
+        Explore stellar objects and their physical properties.
+      </p>
+    </div>
+
+    @if (authService.canModify()) {
+      <a routerLink="/stars/create" class="create-button">
+        <span>+</span>
+        Create Star
+      </a>
+    }
+
+  </div>
+
+
+  @if (stars().length === 0) {
+
+    <div class="empty-state">
+
+      <div class="empty-icon">✦</div>
+
+      <h3>No stars found</h3>
+
+      <p>
+        There are currently no stars available in the database.
+      </p>
+
+    </div>
+
+  } @else {
+
+    <div class="star-grid">
+
+      @for (star of stars(); track star.id) {
+
+        <article class="star-card">
+
+          <div class="star-visual">
+
+            <div class="star-glow"></div>
+
+            <div class="star-symbol">✦</div>
+
+          </div>
+
+
+          <div class="star-content">
+
+            <div class="star-heading">
+
+              <div>
+
+                <span class="star-label">STAR</span>
+
+                <h3>
+                  <a [routerLink]="['/stars', star.id]">
+                    {{ star.name }}
+                  </a>
+                </h3>
+
+              </div>
+
+              <span class="star-id">
+                #{{ star.id }}
+              </span>
+
+            </div>
+
+
+            <p class="description">
+              {{ star.description || 'No description available.' }}
+            </p>
+
+
+            <div class="properties">
+
+              <div class="property">
+
+                <span>Size</span>
+
+                <strong>
+                  {{ star.objectSize }}
+                </strong>
+
+              </div>
+
+
+              <div class="property">
+
+                <span>Mass</span>
+
+                <strong>
+                  {{ star.objectMass }}
+                </strong>
+
+              </div>
+
+            </div>
+
+
+            <div class="card-footer">
+
+              <a
+                [routerLink]="['/stars', star.id]"
+                class="view-link"
+              >
+                View details
+                <span>→</span>
+              </a>
+
+
+              <div class="actions">
+
+                @if (authService.canModify()) {
+
+                  <a
+                    [routerLink]="[
+                      '/stars',
+                      star.id,
+                      'edit'
+                    ]"
+                    class="edit-button"
+                  >
+                    Edit
+                  </a>
+
+                }
+
+
+                @if (authService.isAdmin()) {
+
+                  <button
+                    type="button"
+                    class="delete-button"
+                    (click)="deleteStar(star.id)"
+                  >
+                    Delete
+                  </button>
+
+                }
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      }
+
+    </div>
+
+  }
+
+</section>

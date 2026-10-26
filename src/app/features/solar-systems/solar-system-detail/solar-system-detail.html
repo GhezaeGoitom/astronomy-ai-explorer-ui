@@ -1,0 +1,134 @@
+<section class="solar-system-detail">
+
+  @if (solarSystem(); as currentSolarSystem) {
+
+    <div class="page-header">
+
+      <div>
+        <a
+          class="back-link"
+          routerLink="/solar-systems"
+        >
+          ← Back to Solar Systems
+        </a>
+
+        <div class="title-row">
+
+          <div>
+            <span class="eyebrow">
+              ASTRONOMICAL SYSTEM
+            </span>
+
+            <h1>
+              {{ currentSolarSystem.name }}
+            </h1>
+          </div>
+
+          @if (authService.canModify()) {
+            <a
+              class="edit-button"
+              [routerLink]="[
+                '/solar-systems',
+                currentSolarSystem.id,
+                'edit'
+              ]"
+            >
+              Edit Solar System
+            </a>
+          }
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="solar-system-content">
+
+      <!-- Hero -->
+
+      <div class="solar-system-hero">
+
+        <div class="solar-system-icon">
+          ☀️
+        </div>
+
+        <div>
+
+          <span>Solar System</span>
+
+          <h2>
+            {{ currentSolarSystem.name }}
+          </h2>
+
+          <p>
+            Explore the astronomical system, its galactic
+            location, and associated discovery information.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- Information -->
+
+      <div class="solar-system-info">
+
+        <div class="info-card">
+
+          <span>Galaxy</span>
+
+          <strong>
+            {{ currentSolarSystem.galaxyId ?? 'N/A' }}
+          </strong>
+
+        </div>
+
+
+        <div class="info-card">
+
+          <span>Discovery Record</span>
+
+          <strong>
+            {{ currentSolarSystem.discoverId ?? 'N/A' }}
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <!-- Description -->
+
+      <div class="description-card">
+
+        <div class="section-heading">
+
+          <span>ABOUT</span>
+
+          <h2>
+            Description
+          </h2>
+
+        </div>
+
+        <p>
+          {{
+            currentSolarSystem.description ||
+            'No description available.'
+          }}
+        </p>
+
+      </div>
+
+    </div>
+
+  } @else {
+
+    <div class="loading">
+      <p>Loading solar system...</p>
+    </div>
+
+  }
+
+</section>

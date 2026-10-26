@@ -1,1 +1,65 @@
 /* You can add global styles to this file, and also import other style files */
+html,
+body,
+app-root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+body {
+  overflow: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Global form styling */
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  padding: 12px 14px;
+
+  border: 1px solid #30384d;
+  border-radius: 8px;
+
+  background: #0b1020;
+  color: #ffffff;
+
+  font: inherit;
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: #9ca3af;
+  opacity: 1;
+}
+
+.form-field label {
+  color: #e5e7eb;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: #8b5cf6;
+
+  box-shadow:
+    0 0 0 3px rgba(139, 92, 246, 0.12);
+}
+
+.form-field textarea {
+  resize: vertical;
+  min-height: 140px;
+}

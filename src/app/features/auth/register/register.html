@@ -1,0 +1,224 @@
+<section class="register-page">
+
+  <div class="register-card">
+
+    <div class="register-header">
+
+      <div class="register-icon">
+        ✦
+      </div>
+
+      <span class="eyebrow">
+        ASTRONOMY EXPLORER
+      </span>
+
+      <h1>Create your account</h1>
+
+      <p>
+        Join the astronomy explorer and start discovering the universe.
+      </p>
+
+    </div>
+
+
+    @if (error()) {
+
+      <div class="register-error">
+        {{ error() }}
+      </div>
+
+    }
+
+
+    @if (success()) {
+
+      <div class="register-success">
+        {{ success() }}
+      </div>
+
+    }
+
+
+    <form
+      [formGroup]="form"
+      (ngSubmit)="submit()"
+    >
+
+      <!-- Username -->
+
+      <div class="form-field">
+
+        <label for="username">
+          Username
+        </label>
+
+        <input
+          id="username"
+          type="text"
+          formControlName="username"
+          placeholder="Choose a username"
+          autocomplete="username"
+        >
+
+        @if (
+          form.controls.username.touched &&
+          form.controls.username.hasError('required')
+        ) {
+          <small class="field-error">
+            Username is required.
+          </small>
+        }
+
+        @if (
+          form.controls.username.touched &&
+          form.controls.username.hasError('maxlength')
+        ) {
+          <small class="field-error">
+            Username cannot exceed 50 characters.
+          </small>
+        }
+
+      </div>
+
+
+      <!-- Email -->
+
+      <div class="form-field">
+
+        <label for="email">
+          Email
+        </label>
+
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="Enter your email"
+          autocomplete="email"
+        >
+
+        @if (
+          form.controls.email.touched &&
+          form.controls.email.hasError('required')
+        ) {
+          <small class="field-error">
+            Email is required.
+          </small>
+        }
+
+        @if (
+          form.controls.email.touched &&
+          form.controls.email.hasError('email')
+        ) {
+          <small class="field-error">
+            Enter a valid email address.
+          </small>
+        }
+
+      </div>
+
+
+      <!-- Password -->
+
+      <div class="form-field">
+
+        <label for="password">
+          Password
+        </label>
+
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          placeholder="Create a password"
+          autocomplete="new-password"
+        >
+
+        @if (
+          form.controls.password.touched &&
+          form.controls.password.hasError('required')
+        ) {
+          <small class="field-error">
+            Password is required.
+          </small>
+        }
+
+        @if (
+          form.controls.password.touched &&
+          form.controls.password.hasError('minlength')
+        ) {
+          <small class="field-error">
+            Password must be at least 8 characters.
+          </small>
+        }
+
+      </div>
+
+
+      <!-- Confirm Password -->
+
+      <div class="form-field">
+
+        <label for="confirmPassword">
+          Confirm Password
+        </label>
+
+        <input
+          id="confirmPassword"
+          type="password"
+          formControlName="confirmPassword"
+          placeholder="Confirm your password"
+          autocomplete="new-password"
+        >
+
+        @if (
+          form.controls.confirmPassword.touched &&
+          form.controls.confirmPassword.hasError('required')
+        ) {
+          <small class="field-error">
+            Please confirm your password.
+          </small>
+        }
+
+        @if (
+          form.controls.confirmPassword.touched &&
+          !form.controls.confirmPassword.hasError('required') &&
+          form.controls.password.value !==
+          form.controls.confirmPassword.value
+        ) {
+          <small class="field-error">
+            Passwords do not match.
+          </small>
+        }
+
+      </div>
+
+
+      <button
+        type="submit"
+        class="register-button"
+        [disabled]="loading()"
+      >
+        {{
+          loading()
+            ? 'Creating account...'
+            : 'Create Account'
+        }}
+      </button>
+
+    </form>
+
+
+    <div class="login-link">
+
+      <span>Already have an account?</span>
+
+      <a routerLink="/login">
+        Sign in
+      </a>
+
+    </div>
+
+  </div>
+
+</section>

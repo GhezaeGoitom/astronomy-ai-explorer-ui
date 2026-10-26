@@ -1,0 +1,156 @@
+<section class="black-hole-detail">
+
+  @if (blackHole(); as currentBlackHole) {
+
+    <div class="page-header">
+
+      <div>
+        <a
+          class="back-link"
+          routerLink="/black-holes"
+        >
+          ← Back to Black Holes
+        </a>
+
+        <div class="title-row">
+
+          <div>
+            <span class="eyebrow">
+              EXTREME COSMIC OBJECT
+            </span>
+
+            <h1>
+              {{ currentBlackHole.name }}
+            </h1>
+          </div>
+
+          @if (authService.canModify()) {
+            <a
+              class="edit-button"
+              [routerLink]="[
+                '/black-holes',
+                currentBlackHole.id,
+                'edit'
+              ]"
+            >
+              Edit Black Hole
+            </a>
+          }
+
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="black-hole-content">
+
+      <!-- Hero -->
+
+      <div class="black-hole-hero">
+
+        <div class="black-hole-icon">
+          ◉
+        </div>
+
+        <div>
+
+          <span>Black Hole</span>
+
+          <h2>
+            {{ currentBlackHole.name }}
+          </h2>
+
+          <p>
+            Explore the physical properties, galactic
+            location, and discovery information associated
+            with this black hole.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- Information -->
+
+      <div class="black-hole-info">
+
+        <div class="info-card">
+
+          <span>Object Size</span>
+
+          <strong>
+            {{ currentBlackHole.objectSize ?? 'N/A' }}
+          </strong>
+
+        </div>
+
+
+        <div class="info-card">
+
+          <span>Object Mass</span>
+
+          <strong>
+            {{ currentBlackHole.objectMass ?? 'N/A' }}
+          </strong>
+
+        </div>
+
+
+        <div class="info-card">
+
+          <span>Galaxy</span>
+
+          <strong>
+            {{ currentBlackHole.galaxyId ?? 'N/A' }}
+          </strong>
+
+        </div>
+
+
+        <div class="info-card">
+
+          <span>Discovery Record</span>
+
+          <strong>
+            {{ currentBlackHole.discoverId ?? 'N/A' }}
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <!-- Description -->
+
+      <div class="description-card">
+
+        <div class="section-heading">
+
+          <span>ABOUT</span>
+
+          <h2>Description</h2>
+
+        </div>
+
+        <p>
+          {{
+            currentBlackHole.description ||
+            'No description available.'
+          }}
+        </p>
+
+      </div>
+
+    </div>
+
+  } @else {
+
+    <div class="loading">
+      <p>Loading black hole...</p>
+    </div>
+
+  }
+
+</section>
